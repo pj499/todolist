@@ -1,0 +1,22 @@
+body{
+    margin: 0;
+    background-image: url("/images/home_page_background.jpeg");
+}
+
+#headings{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 15%;
+    margin-left: 35%;
+    transform: rotate(-13deg);
+}
+
+#headings h1{
+    font-size: 4rem;
+    color: palevioletred;
+}
+
+#headings h3{
+    font-size: 2rem;
+    font-style: italic;
+    color:peru;
+}
