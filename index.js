@@ -2,8 +2,15 @@ const express= require('express');
 const port= 3000;
 
 const app= express();
-
-
+const sassMiddleware=require('node-sass-middleware')
+//sass Middleware
+app.use(sassMiddleware({
+    src:'./assets/scss',
+    dest:'./assets/css',
+    debug:true,
+    outputStyle:'compressed',
+    prefix:'/css'
+}))
 //encoded data
 app.use(express.urlencoded());
 
