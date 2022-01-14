@@ -13,13 +13,25 @@
 <body>
     <main>
         <div id="main-container">
-            <div id="info-div"></div>
+            <div id="info-div">
+                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+                <div id='headings'>
+                    <h1>Today List</h1>
+                    <h2>Your Daily Planner</h2>
+                </div>
+            </div>
+            
             <div id="sign-in-div">
                 <div id="sign-in-form">
-                    <form action="" method="post">
+                    <form action="" method="post" id="manual-sign-in">
                         <input type="email" name="email" placeholder="Email address">
                         <input type="password" name="password" placeholder="Password">
                         <input type="submit" value="Log In" id="log-in">
+                    </form>
+                    <hr>
+
+                    <form action="" method="" id="google-sign-in">
+                        <button type="submit">Sign in with Google</button>
                     </form>
                 </div>
             </div>
