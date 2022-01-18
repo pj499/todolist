@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Today</title>
-
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/home.css">
 </head>
 
@@ -20,7 +21,6 @@
                     <h2>Your Daily Planner</h2>
                 </div>
             </div>
-            
             <div id="sign-in-div">
                 <div id="sign-in-form">
                     <form action="" method="post" id="manual-sign-in">
@@ -29,14 +29,24 @@
                         <input type="submit" value="Log In" id="log-in">
                     </form>
                     <hr>
-
-                    <form action="" method="" id="google-sign-in">
-                        <button type="submit">Sign in with Google</button>
-                    </form>
+                    <div id="create-account">
+                        <button>
+                            Create New Account
+                        </button>
+                    </div>
+                    <div id="google-sign">
+                        <form action="" method="" id="google-sign-in">
+                            <button type="submit">
+                                <i class="fab fa-google fa-lg" ></i>
+                                Sign in with Google
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
+    <script src="/js/home.js"></script>
 </body>
 
 </html>
