@@ -4,11 +4,18 @@ body{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     #main-container{
+
+        
         display: flex;
         #info-div{
+
+            @media screen and (max-width: 900px) {
+                width: 100%;
+            }
+
             width: 60%;
             height: 100vh;
-            border: 1px solid black;
+            // border: 1px solid black;
             // background-image: url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
             position: relative;
 
@@ -20,10 +27,11 @@ body{
                 position: absolute;
             }
             #headings{
+                width: 100%;
                 display: inline-block;
                 position: absolute;
-                left: 35%;
                 color:oldlace;
+                text-align: center;
 
                 h1{
                     font-size: 3.5rem;
@@ -36,18 +44,31 @@ body{
             }
         }
         #sign-in-div{
+
+            @media screen and (max-width: 900px) {
+                    width: 0;
+                    z-index: 2;
+                    position: relative;
+                    right: 50%;
+            }
+
             display:flex;
             justify-content: center;
             align-items: center;
             width: 40%;
             height: 100vh;
-            border: 1px solid red;
+            // border: 1px solid red;
             background-color: #F0F2F5;
 
             hr{
                 margin: 10px 50px;
             }
-            #sign-in-form{
+            .form{
+
+                @media screen and (max-width: 900px) {
+                    position: relative;
+                    top: 10%;
+            }
                 transition: 1s ease-in;
                 width: 60%;
                 height: 55%;
@@ -55,9 +76,11 @@ body{
                 border: none;
                 border-radius: 10px;
                 box-shadow: 0px 0px 5px 5px#DCDDE0;
-                min-height: 330px;
+                min-height: 420px;
                 min-width: 300px;
-                #manual-sign-in{
+
+               
+                .manual{
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -88,6 +111,14 @@ body{
                         background-color: lightgray;
                     }
                 }
+
+                #manual-sign-up{
+                    input{
+                        height: 35px;
+                        margin: 8px 0;
+                    }
+                }
+
                 #create-account{
                     width: 100%;
                     // border: 1px solid black;

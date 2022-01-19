@@ -22,18 +22,49 @@
                 </div>
             </div>
             <div id="sign-in-div">
-                <div id="sign-in-form">
-                    <form action="" method="post" id="manual-sign-in">
-                        <input type="email" name="email" placeholder="Email address">
-                        <input type="password" name="password" placeholder="Password">
+                <div id="sign-in-form" class="form">
+                    <form action="" method="post" id="manual-sign-in" class="manual">
+                        <input type="email" name="email" placeholder="Email address" required>
+                        <input type="password" name="password" placeholder="Password" required>
                         <input type="submit" value="Log In" id="log-in">
                     </form>
+
                     <hr>
                     <div id="create-account">
                         <button>
                             Create New Account
                         </button>
                     </div>
+
+                    <div id="google-sign">
+                        <form action="" method="" id="google-sign-in">
+                            <button type="submit">
+                                <i class="fab fa-google fa-lg" ></i>
+                                Sign in with Google
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+
+                <div id="sign-up-form" class="form" >
+
+                    <form action="" method="post" id="manual-sign-up" class="manual">
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="email" name="email" placeholder="Email address" required>
+                        <input type="number" name="phoneno" placeholder="Contact Number" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <input type="password" name="confirm-password" placeholder="Confirm Password" required>
+                        <input type="submit" value="Sign Up" id="sign-up">
+                    </form>
+
+                    <hr>
+                    <div  style="text-align: center; width: 100%; ">
+                        Already have an account?
+                        <a href="" id="sign-in-redirect" style="text-decoration: none; color: blue;">Sign In</a>
+                    </div>
+
                     <div id="google-sign">
                         <form action="" method="" id="google-sign-in">
                             <button type="submit">
@@ -43,6 +74,8 @@
                         </form>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </main>
