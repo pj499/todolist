@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Today</title>
+    <title>Today List</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/home.css">
@@ -23,12 +23,14 @@
             </div>
             <div id="sign-in-div">
                 <div id="sign-in-form" class="form">
-                    <form action="" method="post" id="manual-sign-in" class="manual">
+                    <form action="/user/create-session" method="post" id="manual-sign-in" class="manual">
                         <input type="email" name="email" placeholder="Email address" required>
                         <input type="password" name="password" placeholder="Password" required>
                         <input type="submit" value="Log In" id="log-in">
                     </form>
-
+                    <div id="forgot-password">
+                        <a href="">Forgotten password?</a>
+                    </div>
                     <hr>
                     <div id="create-account">
                         <button>
@@ -37,7 +39,7 @@
                     </div>
 
                     <div id="google-sign">
-                        <form action="" method="" id="google-sign-in">
+                        <form action="" method="" class="google-sign-in">
                             <button type="submit">
                                 <i class="fab fa-google fa-lg" ></i>
                                 Sign in with Google
@@ -50,12 +52,12 @@
 
                 <div id="sign-up-form" class="form" >
 
-                    <form action="" method="post" id="manual-sign-up" class="manual">
+                    <form action="/user/create" method="post" id="manual-sign-up" class="manual">
                         <input type="text" name="name" placeholder="Name" required>
                         <input type="email" name="email" placeholder="Email address" required>
-                        <input type="number" name="phoneno" placeholder="Contact Number" required>
+                        <input type="text" name="phone" placeholder="Contact Number" required>
                         <input type="password" name="password" placeholder="Password" required>
-                        <input type="password" name="confirm-password" placeholder="Confirm Password" required>
+                        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
                         <input type="submit" value="Sign Up" id="sign-up">
                     </form>
 
@@ -66,7 +68,7 @@
                     </div>
 
                     <div id="google-sign">
-                        <form action="" method="" id="google-sign-in">
+                        <form action="" method="" class="google-sign-in">
                             <button type="submit">
                                 <i class="fab fa-google fa-lg" ></i>
                                 Sign in with Google
