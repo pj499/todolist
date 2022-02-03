@@ -48,6 +48,6 @@ sign_in_redirect.addEventListener('click', function(event){
         sign_in_form_div.style.display='none';
         sign_up_form_div.style.display='block';
     }
-
-
 });
+
+
