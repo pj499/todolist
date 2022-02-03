@@ -8,6 +8,7 @@ const cookieParser=require('cookie-parser');
 const session=require('express-session');
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
+const passportGoogle=require('./config/passport-google-oauth2-strategy');
 //sass Middleware
 app.use(sassMiddleware({
     src:'./assets/scss',
