@@ -51,3 +51,18 @@ sign_in_redirect.addEventListener('click', function(event){
 });
 
 
+<<<<<<< HEAD
+=======
+});
+function preventBack() {
+    window.history.forward(); //same as clicking forward in the browser
+}
+  
+setTimeout("preventBack()", 0);
+  
+window.onunload = function () { null };//onunload occurs when the user navigates away from the page
+
+// function disablePrev() { window.history.forward() }
+// window.onload = disablePrev();
+// window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+>>>>>>> 6730e60f18e5dd9827a89dbba5f8c3b5ccbf9ea8
