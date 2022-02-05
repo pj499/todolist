@@ -31,6 +31,12 @@ module.exports.createSession=function(req,res){
     return res.redirect('/user/task');
 }
 
+module.exports.destroySession= function(req, res){
+    req.logout();
+
+    return res.redirect('/');
+}
+
 module.exports.tasks=function(req,res){
     return res.render('task');
 }
