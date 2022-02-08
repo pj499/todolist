@@ -46,10 +46,9 @@ sign_in_redirect.addEventListener('click', function(event){
     }
 });
 
-input_phone.addEventListener('keypress',function(e){
-    var value=e.target.value;
-    console.log(value);
-})
+// input_phone.addEventListener('keydown',function(e){
+//     console.log(e.target.value); 
+// });
 
 function preventBack() {
     window.history.forward(); //same as clicking forward in the browser
@@ -62,3 +61,5 @@ window.onunload = function () { null };//onunload occurs when the user navigates
 // function disablePrev() { window.history.forward() }
 // window.onload = disablePrev();
 // window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+
+
