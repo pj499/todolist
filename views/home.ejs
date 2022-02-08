@@ -55,7 +55,7 @@
                     <form action="/user/create" method="post" id="manual-sign-up" class="manual">
                         <input type="text" name="name" placeholder="Name" required>
                         <input type="email" name="email" placeholder="Email address" required>
-                        <input type="text" name="phone" placeholder="Contact Number">
+                        <input type="text" name="phone" placeholder="Contact Number" id="phone-number" onkeypress="return onlyNumberKey(event)" maxlength="10" required>
                         <input type="password" name="password" placeholder="Password" required>
                         <input type="password" name="confirm_password" placeholder="Confirm Password" required>
                         <input type="submit" value="Sign Up" id="sign-up">
@@ -82,6 +82,18 @@
         </div>
     </main>
     <script src="/js/home.js"></script>
+    <script>
+        function onlyNumberKey(evt) {
+              console.log(evt.target);
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)){
+                evt.target.style.boderColor="red";
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 
 </html>

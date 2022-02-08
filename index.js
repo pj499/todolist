@@ -23,7 +23,7 @@ app.use(sassMiddleware({
     prefix:'/css'
 }))
 //encoded data
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //assets
