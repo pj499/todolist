@@ -3,6 +3,8 @@ body {
     overflow: hidden;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+
+    
     #main-container {
         display: flex;
         #info-div {
@@ -75,6 +77,10 @@ body {
                 box-shadow: 0px 0px 5px 5px#DCDDE0;
                 min-height: 370px;
                 min-width: 300px;
+                position: relative;
+
+                
+                
                 #forgot-password {
                     width: 100%;
                     // border: 1px solid black;
@@ -118,12 +124,46 @@ body {
                     }
                 }
 
+                // #phone-error-message{
+                //     width: 100px;
+                //     height: 100px;
+                //     border: 1px solid blue;
+                //     background-color: wheat;
+                //     opacity: 0.5;
+                //     position: absolute;
+                // }
+
+
+                // .show-error-div::before{
+                //     display: inline-block;
+                // }
+
                 #manual-sign-up {
                     input {
                         height: 33px;
                         margin: 5px 0;
                     }
+
+                    .error{
+                        outline-color: red;
+                    }
                 }
+
+                .show-error-div::before{
+                    content: "Please enter digits only";
+                    font-size: smaller;
+                    text-align: center;
+                    color: red;
+                    width: 100px;
+                    height: 40px;
+                    background-color: white;
+                    opacity: 0.8;
+                    position: absolute;
+                    left: -110px;
+                    top: 90px;
+                }
+
+               
 
                 #create-account {
                     width: 100%;

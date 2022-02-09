@@ -52,10 +52,16 @@
 
                 <div id="sign-up-form" class="form" >
 
+                    <!-- <div id="phone-error-message" class="">
+                        <p>
+                            Please enter digits only!
+                        </p>
+                    </div> -->
+
                     <form action="/user/create" method="post" id="manual-sign-up" class="manual">
                         <input type="text" name="name" placeholder="Name" required>
                         <input type="email" name="email" placeholder="Email address" required>
-                        <input type="text" name="phone" placeholder="Contact Number" id="phone-number" onkeypress="return onlyNumberKey(event)" maxlength="10" required>
+                        <input type="text" name="phone" placeholder="Contact Number" id="phone-number" class="" onkeypress="return onlyNumberKey(event)" maxlength="10" required>
                         <input type="password" name="password" placeholder="Password" required>
                         <input type="password" name="confirm_password" placeholder="Confirm Password" required>
                         <input type="submit" value="Sign Up" id="sign-up">
@@ -83,14 +89,31 @@
     </main>
     <script src="/js/home.js"></script>
     <script>
+        var flag=false;
+
+        var manualSignUpDiv= document.getElementById('manual-sign-up');
+
         function onlyNumberKey(evt) {
-              console.log(evt.target);
+             // console.log(evt.target);
+
             // Only ASCII character in that range allowed
             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)){
-                evt.target.style.boderColor="red";
+            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57) ){
+
+                if(flag==false){
+                    evt.target.className= evt.target.className+ " error";
+                    flag= true;
+                    manualSignUpDiv.classList.add('show-error-div');
+                }
+                
                 return false;
             }
+
+            evt.target.className= evt.target.className.replace(" error", "");
+            flag=false;
+            
+            manualSignUpDiv.classList.remove('show-error-div');
+
             return true;
         }
     </script>
