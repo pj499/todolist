@@ -4,7 +4,7 @@ const db=require('./config/mongoose')
 const app= express();
 const sassMiddleware=require('node-sass-middleware')
 const cookieParser=require('cookie-parser');
-
+const Otp=require('./models/otp');
 //used for session cookie
 const session=require('express-session');
 const passport=require('passport');

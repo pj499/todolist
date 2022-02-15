@@ -149,7 +149,7 @@ body {
                     }
                 }
 
-                .show-error-div::before{
+                .show-error-div-alphabet::before{
                     content: "Please enter digits only";
                     font-size: smaller;
                     text-align: center;
@@ -161,8 +161,27 @@ body {
                     position: absolute;
                     left: -110px;
                     top: 90px;
+                    transition: 1s ease-in-out 0.5s;
+                    animation-name: fadeOut;
+                    animation-duration: 5s;
                 }
-
+                 @keyframes fadeOut {
+                    0% {opacity: 1;}
+                    100% {opacity: 0;}
+                 }
+                .show-error-div-length::before{
+                    content: "Please enter 10 digits only";
+                    font-size: smaller;
+                    text-align: center;
+                    color: red;
+                    width: 100px;
+                    height: 40px;
+                    background-color: white;
+                    opacity: 0.8;
+                    position: absolute;
+                    left: -110px;
+                    top: 90px;
+                }
                
 
                 #create-account {

@@ -20,7 +20,11 @@ const userSchema= new mongoose.Schema({
     tasks:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Task'
-    }]
+    }],
+    verified:{
+        type:Boolean,
+        required:true
+    }
 },{timestamps:true});
 
 const User=mongoose.model('User',userSchema);
