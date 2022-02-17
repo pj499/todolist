@@ -83,6 +83,12 @@
                             </button>
                         </form>
                     </div>
+
+                    <% if(locals.err_msg) { %> 
+                        <div role="alert" style="z-index: 20; width: 100px; height: 100px; background-color: black; color: white;"> <%= err_msg %> </div>
+                    <% } %>
+                   
+
                 </div>
 
 
