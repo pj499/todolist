@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const bcrypt= require('bcrypt');
+const otpMailer= require('../mailers/otp_mailer');
 
 module.exports.create = async function (req, res) {
     try {
@@ -17,10 +18,14 @@ module.exports.create = async function (req, res) {
             req.body.verified= false;
             await User.create(req.body);
             console.log(req.body);
+
+            otpMailer.sendOTPVerificationEmail(req);
+            
             return res.redirect('back');
         }
 
-        return res.redirect('/?err_msg=' + 'User exist');
+
+        return res.redirect('/?err_msg=' + 'Useralreadyexist');
         // return res.render('home',  {err_msg: 'User already exist!!!!!!!!!!!!!'});
 
     }catch(e){

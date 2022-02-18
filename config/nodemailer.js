@@ -10,7 +10,7 @@ let transporter= nodemailer.createTransport({
     secure: false,
     auth: {
         user: 'milkbooproject@gmail.com',
-        password: 'milkybooboo'
+        pass: 'milkybooboo'
     }
 });
 
@@ -30,4 +30,9 @@ let renderTemplate= function(data, relativePath){
     );
 
     return mailHTML;
+}
+
+module.exports= {
+    transporter: transporter,
+    renderTemplate: renderTemplate
 }

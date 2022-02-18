@@ -1,6 +1,7 @@
 module.exports.home =function(req, res){
 
     var err_msg= req.query.err_msg;
+    
 console.log(err_msg);
 
     if(req.isAuthenticated()){
