@@ -2,7 +2,7 @@ body{
     margin: 0;
     overflow-x: hidden;
     align-items: center;
-    background-color: #c2f1db;
+    background-color: #9FB1BD;
     #mail-verification{
         // border: 1px solid black;
         height: 90vh;
@@ -11,7 +11,7 @@ body{
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        color: #496075;
+        color: #2C5765;
         font-family: Arial, Helvetica, sans-serif;
         text-align: center;
         form{
@@ -30,7 +30,7 @@ body{
                 min-width: 500px;
                 input{
                     border: none;
-                    background-color: #f1fbf3;
+                    background-color: #D3D0CB;
                 }
                 .form-control {
                     -webkit-transition: none;
@@ -72,9 +72,14 @@ body{
             border: none;
             height: 40px;
             width: 150px;
-            background-color: #7ea8aa;
+            background-color: #6E8897;
             border-radius: 15px;
-            
+            color: #2C5765;
+            font-weight: bold;
+        }
+        .otp-button:hover{
+          cursor: pointer;
+          background-color: #a8b9c4;
         }
     }
 }
