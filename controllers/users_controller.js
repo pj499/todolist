@@ -16,16 +16,16 @@ module.exports.create = async function (req, res) {
         var user = await User.findOne({ email: req.body.email });
         if (!user) {
             req.body.verified= false;
-            await User.create(req.body);
-            console.log(req.body);
+            const userr=await User.create(req.body);
+            console.log("User data: ",userr);
 
-            otpMailer.sendOTPVerificationEmail(req);
+            otpMailer.sendOTPVerificationEmail(req,userr);
             
             return res.redirect('back');
         }
 
 
-        return res.redirect('/?err_msg=' + 'Useralreadyexist');
+        return res.redirect('/?err_msg=' + 'User already exist');
         // return res.render('home',  {err_msg: 'User already exist!!!!!!!!!!!!!'});
 
     }catch(e){
