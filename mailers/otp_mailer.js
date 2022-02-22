@@ -37,13 +37,9 @@ module.exports.sendOTPVerificationEmail = async function (req,user) {
                 expiresAt: Date.now() + 3600000
             });
 
-            console.log("otp verifiation: ",newOTPVerification);
-
             return;
         });
 
-
-        console.log('Out of sendMail');
 
     } catch (err) {
         console.log('Error in sending otp mail', err);

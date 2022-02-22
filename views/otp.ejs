@@ -12,19 +12,20 @@
 <body>
     <div id="mail-verification">
         <h1>Enter 6 Digit OTP Sent On Your Mail.</h1>
-        <form action="" method="post">
+        <form action="/user/verify/:<%=user.id%>" method="post">
             <div id="otp" class="flex justify-center">
-                <input class="form-control form-control-solid" type="text" id="first" maxlength="1" />
-                <input class="form-control form-control-solid" type="text" id="second" maxlength="1" />
-                <input class="form-control form-control-solid" type="text" id="third" maxlength="1" />
-                <input class="form-control form-control-solid" type="text" id="fourth" maxlength="1" />
-                <input class="form-control form-control-solid" type="text" id="fifth" maxlength="1" />
-                <input class="form-control form-control-solid" type="text" id="sixth" maxlength="1" />
+                <input class="form-control form-control-solid" name ="otp_digit1" type="text" id="first" maxlength="1" />
+                <input class="form-control form-control-solid" name ="otp_digit2" type="text" id="second" maxlength="1" />
+                <input class="form-control form-control-solid" name ="otp_digit3" type="text" id="third" maxlength="1" />
+                <input class="form-control form-control-solid" name ="otp_digit4" type="text" id="fourth" maxlength="1" />
+                <input class="form-control form-control-solid" name ="otp_digit5" type="text" id="fifth" maxlength="1" />
+                <input class="form-control form-control-solid" name ="otp_digit6" type="text" id="sixth" maxlength="1" />
             </div>
             <button class="otp-button" type="submit">Submit</button>
         </form>
         <button class="otp-button" type="submit">Resend OTP</button>
     </div>
+    <script src="/js/otp_field.js"></script>
 </body>
 
 </html>

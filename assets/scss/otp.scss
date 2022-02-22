@@ -31,6 +31,8 @@ body{
                 input{
                     border: none;
                     background-color: #D3D0CB;
+                    font-size: 20px;
+                    font-weight: bold;
                 }
                 .form-control {
                     -webkit-transition: none;
@@ -79,7 +81,6 @@ body{
         }
         .otp-button:hover{
           cursor: pointer;
-          background-color: #a8b9c4;
         }
     }
 }

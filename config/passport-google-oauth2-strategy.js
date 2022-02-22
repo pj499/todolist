@@ -21,7 +21,8 @@ passport.use(new googleStrategy({
                 let user = await User.create({
                     name: profile.displayName,
                     email: profile.emails[0].value,
-                    password: crypto.randomBytes(20).toString('hex')
+                    password: crypto.randomBytes(20).toString('hex'),
+                    verified:true
                 });
                 if (user) {
                     return done(null, user);

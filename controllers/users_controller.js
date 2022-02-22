@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Otp= require('../models/otp');
 const bcrypt= require('bcrypt');
 const otpMailer= require('../mailers/otp_mailer');
 
@@ -21,7 +22,7 @@ module.exports.create = async function (req, res) {
 
             otpMailer.sendOTPVerificationEmail(req,userr);
             
-            return res.redirect('back');
+            return res.render('otp',{user:userr});
         }
 
 
@@ -48,4 +49,17 @@ module.exports.destroySession= function(req, res){
 
 module.exports.tasks=function(req,res){
     return res.render('task');
+}
+
+module.exports.verifyEmail=async function(req,res){
+    try{
+        console.log("Throught string params", req.params);
+        var user_id=req.params.id;
+        var otp=await Otp.findOne({user_id});
+        console.log("Otp ",otp);
+        console.log("Request Body: ",req.body);
+        return;
+    }catch(e){
+        return;
+    }
 }
