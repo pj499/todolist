@@ -53,13 +53,17 @@ module.exports.tasks=function(req,res){
 
 module.exports.verifyEmail=async function(req,res){
     try{
-        console.log("Throught string params", req.params);
-        var user_id=req.params.id;
-        var otp=await Otp.findOne({user_id});
+        var user_id=req.params['id'];
+        console.log("User Id: ",user_id);
+        const otp=await Otp.findOne({user_id:user_id});
         console.log("Otp ",otp);
         console.log("Request Body: ",req.body);
+        var reqBody=req.body;
+        let user_otp=reqBody.otp_digit1+reqBody.otp_digit2+reqBody.otp_digit3+reqBody.otp_digit4+reqBody.otp_digit5+reqBody.otp_digit6;
+        console.log("User Otp: ",typeof(user_otp),user_otp);
         return;
     }catch(e){
+        console.log("Error: ",e);
         return;
     }
 }

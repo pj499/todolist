@@ -12,7 +12,7 @@
 <body>
     <div id="mail-verification">
         <h1>Enter 6 Digit OTP Sent On Your Mail.</h1>
-        <form action="/user/verify/:<%=user.id%>" method="post">
+        <form action="/user/verify/<%=user.id%>" method="post">
             <div id="otp" class="flex justify-center">
                 <input class="form-control form-control-solid" name ="otp_digit1" type="text" id="first" maxlength="1" />
                 <input class="form-control form-control-solid" name ="otp_digit2" type="text" id="second" maxlength="1" />
