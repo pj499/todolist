@@ -61,6 +61,9 @@ module.exports.verifyEmail=async function(req,res){
         var reqBody=req.body;
         let user_otp=reqBody.otp_digit1+reqBody.otp_digit2+reqBody.otp_digit3+reqBody.otp_digit4+reqBody.otp_digit5+reqBody.otp_digit6;
         console.log("User Otp: ",typeof(user_otp),user_otp);
+        if(!bcrypt.compare(user_otp,otp.otp)){
+            
+        }
         return;
     }catch(e){
         console.log("Error: ",e);
