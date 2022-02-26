@@ -71,7 +71,7 @@ module.exports.verifyEmail=async function(req,res){
             req.flash('error', 'OTP Time Expired!');
             return res.redirect('back');
         }
-
+        req.flash('success', 'Logged In Successfully!');
         let user= await User.findById(user_id);
         user.verified= true;
         await Otp.findByIdAndDelete(otp._id);

@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Today List</title>
     <link rel="stylesheet" href="/css/otp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js" integrity="sha512-mgZL3SZ/vIooDg2mU2amX6NysMlthFl/jDbscSRgF/k3zmICLe6muAs7YbITZ+61FeUoo1plofYAocoR5Sa1rQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -21,12 +24,24 @@
                 <input class="form-control form-control-solid" name ="otp_digit5" type="text" id="fifth" maxlength="1" />
                 <input class="form-control form-control-solid" name ="otp_digit6" type="text" id="sixth" maxlength="1" />
             </div>
-            <button class="otp-button" type="submit" disabled="'disabled">Submit</button>
+            <button class="otp-button" type="submit">Submit</button>
         </form>
         <button class="otp-button" type="submit">Resend OTP</button>
+        
     </div>
+    <% if(flash.success && flash.success.length>0) {%>
+        <h2>
+            <%= flash.success%>
+        </h2>
+    <%}%>
+    <% if(flash.error && flash.error.length>0) {%>
+        <h2>
+            <%= flash.error%>
+        </h2>
+    <%}%>
+    
     <script src="/js/otp_field.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js" integrity="sha512-mgZL3SZ/vIooDg2mU2amX6NysMlthFl/jDbscSRgF/k3zmICLe6muAs7YbITZ+61FeUoo1plofYAocoR5Sa1rQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <%- include('_noty'); -%>
 </body>
 
 </html>
