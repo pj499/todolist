@@ -11,6 +11,7 @@ const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
 const passportGoogle=require('./config/passport-google-oauth2-strategy');
 const flash=require('connect-flash');
+const customMware= require('./config/middleware');
 
 //layout
 //const expressLayouts= require('express-ejs-layouts');
@@ -53,6 +54,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 app.use(flash());
+app.use(customMware.setFlash);
+
 //routes
 app.use('/', require('./routes/index'));
 

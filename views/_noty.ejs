@@ -1,0 +1,25 @@
+<script>
+      <% if(flash.success && flash.success.length>0) { %>
+            
+            new Noty({
+                theme: 'nest',
+                text: '<%= flash.success %>',
+                type: 'success',
+                layout: 'topCenter',
+                timeout: 2000
+            }).show();
+            
+         <% } %> 
+
+         <% if(flash.error && flash.error.length>0) { %>
+            
+            new Noty({
+                theme: 'metroui',
+                text: '<%= flash.error %>',
+                type: 'error',
+                layout: 'topCenter',
+                timeout: 2000
+            }).show();
+            
+         <% } %> 
+</script>

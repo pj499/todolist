@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js" integrity="sha512-mgZL3SZ/vIooDg2mU2amX6NysMlthFl/jDbscSRgF/k3zmICLe6muAs7YbITZ+61FeUoo1plofYAocoR5Sa1rQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -96,6 +99,21 @@
             </div>
         </div>
 
+        <% if(flash.success && flash.success.length>0) { %> 
+            
+            <h2 style="font-family: Arial, Helvetica, sans-serif;">
+                <%= flash.success %>
+            </h2>
+            
+        <% } %>
+
+        <% if(flash.error && flash.error.length>0) { %> 
+            
+            <h2 style="font-family: Arial, Helvetica, sans-serif;">
+                <%= flash.error %>
+            </h2>
+            
+        <% } %>
          
        
     </main>
@@ -138,6 +156,8 @@
             return true;
         }
     </script>
+
+    <%- include('_noty'); -%>
 </body>
 
 </html>

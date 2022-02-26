@@ -38,6 +38,7 @@ module.exports.create = async function (req, res) {
 
 
 module.exports.createSession=function(req,res){
+    req.flash('success', 'Logged in successfully');
     return res.redirect('/user/task');
 }
 
@@ -54,17 +55,29 @@ module.exports.tasks=function(req,res){
 module.exports.verifyEmail=async function(req,res){
     try{
         var user_id=req.params['id'];
-        console.log("User Id: ",user_id);
         const otp=await Otp.findOne({user_id:user_id});
-        console.log("Otp ",otp);
-        console.log("Request Body: ",req.body);
+        
         var reqBody=req.body;
         let user_otp=reqBody.otp_digit1+reqBody.otp_digit2+reqBody.otp_digit3+reqBody.otp_digit4+reqBody.otp_digit5+reqBody.otp_digit6;
-        console.log("User Otp: ",typeof(user_otp),user_otp);
-        if(!bcrypt.compare(user_otp,otp.otp)){
-            
+        
+        if(! await bcrypt.compare(user_otp, otp.otp)){
+            console.log('OTP Compare');
+            req.flash('error', 'Invalid OTP!');
+            return res.redirect('back'); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+
+        }else if(Date.now()> otp.expiresAt){
+
+            await Otp.findByIdAndDelete(otp._id);
+            req.flash('error', 'OTP Time Expired!');
+            return res.redirect('back');
         }
-        return;
+
+        let user= await User.findById(user_id);
+        user.verified= true;
+        await Otp.findByIdAndDelete(otp._id);
+
+        return res.render('task');
+
     }catch(e){
         console.log("Error: ",e);
         return;
