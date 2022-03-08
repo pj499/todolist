@@ -22,9 +22,16 @@
    
     <h1>Tasks</h1>
 
-    <div>
-        
-    </div>
+    <% if(flash.success && flash.success.length>0) {%>
+        <h2>
+            <%= flash.success%>
+        </h2>
+    <%}%>
+    <% if(flash.error && flash.error.length>0) {%>
+        <h2>
+            <%= flash.error%>
+        </h2>
+    <%}%>
     
     <%- include('_noty'); -%>
 </body>

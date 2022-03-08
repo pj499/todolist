@@ -52,6 +52,8 @@ module.exports.tasks=function(req,res){
 
 module.exports.verifyEmail=async function(req,res){
     try{
+        console.log('Inside verifyEMail');
+
         var user_id=req.params['id'];
         const otp=await Otp.findOne({user_id:user_id});
         console.log("Otp: ",otp);
@@ -61,20 +63,29 @@ module.exports.verifyEmail=async function(req,res){
         if(! await bcrypt.compare(user_otp, otp.otp)){
             console.log('OTP Compare');
             req.flash('error', 'Invalid OTP!');
-            return res.redirect('back'); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+            return res.redirect('/'); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 
         }else if(Date.now()> otp.expiresAt){
 
             await Otp.findByIdAndDelete(otp._id);
+            console.log('OTP Expired');
+
             req.flash('error', 'OTP Time Expired!');
             return res.redirect('back');
         }
-        req.flash('success', 'Logged In Successfully!');
-        let user= await User.findById(user_id);
-        user.verified= true;
+
+        console.log('OTP Valid');
+
+        let user= await User.findByIdAndUpdate(user_id, {verified: true});
+        // user.verified= true;
+        // user.save();
         await Otp.findByIdAndDelete(otp._id);
 
-        return res.render('task');
+        
+
+        req.flash('success', 'User created successfully! Please Login to Continue');
+
+        return res.redirect('/');
 
     }catch(e){
         console.log("Error: ",e);
