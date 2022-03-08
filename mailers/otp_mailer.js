@@ -25,7 +25,7 @@ module.exports.sendOTPVerificationEmail = async function (req,user) {
                 console.log('Error in sending otp sendMail', err);
                 return;
             }
-            console.log('OTP mail sent!', info);
+            console.log('OTP mail sent!');
 
 
             const hashedOTP = await bcrypt.hash(otp, 10);

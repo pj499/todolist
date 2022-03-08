@@ -35,8 +35,6 @@ module.exports.create = async function (req, res) {
     }
 }
 
-
-
 module.exports.createSession=function(req,res){
     req.flash('success', 'Logged in successfully');
     return res.redirect('/user/task');
@@ -56,7 +54,7 @@ module.exports.verifyEmail=async function(req,res){
     try{
         var user_id=req.params['id'];
         const otp=await Otp.findOne({user_id:user_id});
-        
+        console.log("Otp: ",otp);
         var reqBody=req.body;
         let user_otp=reqBody.otp_digit1+reqBody.otp_digit2+reqBody.otp_digit3+reqBody.otp_digit4+reqBody.otp_digit5+reqBody.otp_digit6;
         
