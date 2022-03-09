@@ -59,11 +59,11 @@ module.exports.verifyEmail=async function(req,res){
         console.log("Otp: ",otp);
         var reqBody=req.body;
         let user_otp=reqBody.otp_digit1+reqBody.otp_digit2+reqBody.otp_digit3+reqBody.otp_digit4+reqBody.otp_digit5+reqBody.otp_digit6;
-        
+        let user =await User.findById(user_id);
         if(! await bcrypt.compare(user_otp, otp.otp)){
             console.log('OTP Compare');
             req.flash('error', 'Invalid OTP!');
-            return res.redirect('/'); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+            return res.redirect('/user/verify'); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 
         }else if(Date.now()> otp.expiresAt){
 
@@ -76,14 +76,14 @@ module.exports.verifyEmail=async function(req,res){
 
         console.log('OTP Valid');
 
-        let user= await User.findByIdAndUpdate(user_id, {verified: true});
+        user= await User.findByIdAndUpdate(user_id, {verified: true});
         // user.verified= true;
         // user.save();
         await Otp.findByIdAndDelete(otp._id);
 
         
 
-        req.flash('success', 'User created successfully! Please Login to Continue');
+        req.flash('success', 'Signed Up successfully! Please Login to Continue');
 
         return res.redirect('/');
 
@@ -91,4 +91,10 @@ module.exports.verifyEmail=async function(req,res){
         console.log("Error: ",e);
         return;
     }
+}
+
+module.exports.renderOtp= async function(req,res){
+    var user_id=req.params['id'];
+    let user =await User.findById(user_id);
+    return res.render('otp',{user:user});
 }
