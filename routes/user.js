@@ -9,7 +9,8 @@ router.get('/auth/google',passport.authenticate('google',{scope:['profile','emai
 router.get('/auth/google/callback',passport.authenticate('google',{failureRedirect:'/'}),userController.createSession);
 router.get('/task',passport.checkAuthentication,userController.tasks);
 router.get('/sign-out', userController.destroySession);
-router.post('/verify/:id', userController.verifyEmail);
+router.post('/verify/:id', userController.verifyEmailPath1);
+router.get('/verifypath', userController.verifyEmailPath2);
 
 
 module.exports=router;

@@ -2,6 +2,7 @@ const User = require('../models/user');
 const Otp= require('../models/otp');
 const bcrypt= require('bcrypt');
 const otpMailer= require('../mailers/otp_mailer');
+const url = require('url'); // built-in utility
 
 module.exports.create = async function (req, res) {
     try {
@@ -52,7 +53,15 @@ module.exports.tasks=function(req,res){
     return res.render('task');
 }
 
-module.exports.verifyEmail=async function(req,res){
+module.exports.verifyEmailPath1= async function(req, res){
+    try{
+    return res.redirect('/user/verifypath');
+
+    }catch(err){
+
+    }
+}
+module.exports.verifyEmailPath2=async function(req,res){
     try{
         console.log('Inside verifyEMail');
 
@@ -65,7 +74,9 @@ module.exports.verifyEmail=async function(req,res){
         if(! await bcrypt.compare(user_otp, otp.otp)){
             console.log('OTP Compare');
             req.flash('error', 'Invalid OTP!');
-            return res.redirect('/'); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+
+            
+            return res.redirect('back'); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 
         }else if(Date.now()> otp.expiresAt){
 
