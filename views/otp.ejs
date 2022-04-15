@@ -26,22 +26,17 @@
             </div>
             <button class="otp-button" type="submit">Submit</button>
         </form>
+
         <button class="otp-button" type="submit">Resend OTP</button>
         
     </div>
-    <% if(flash.success && flash.success.length>0) {%>
-        <h2>
-            <%= flash.success%>
-        </h2>
-    <%}%>
-    <% if(flash.error && flash.error.length>0) {%>
-        <h2>
-            <%= flash.error%>
-        </h2>
-    <%}%>
+   
     
     <script src="/js/otp_field.js"></script>
     <%- include('_noty'); -%>
 </body>
 
+<script>
+    history.replaceState({}, null, "http://localhost:3000/user/verifyOTP");
+</script>
 </html>

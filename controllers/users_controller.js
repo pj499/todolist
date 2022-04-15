@@ -22,8 +22,8 @@ module.exports.create = async function (req, res) {
             console.log("User data: ",userr);
 
             otpMailer.sendOTPVerificationEmail(req,userr);
-            
-            return res.render('otp',{user:userr});
+            let user_id= userr._id;
+            return res.redirect('/user/verifyOTP/'+user_id);
         }
 
 
@@ -51,15 +51,7 @@ module.exports.tasks=function(req,res){
     return res.render('task');
 }
 
-module.exports.verifyEmailPath1= async function(req, res){
-    try{
-    return res.redirect('/user/verifypath');
-
-    }catch(err){
-
-    }
-}
-module.exports.verifyEmailPath2=async function(req,res){
+module.exports.verifyEmailPath=async function(req,res){
     try{
         console.log('Inside verifyEMail');
 
@@ -72,7 +64,7 @@ module.exports.verifyEmailPath2=async function(req,res){
         if(! await bcrypt.compare(user_otp, otp.otp)){
             console.log('OTP Compare');
             req.flash('error', 'Invalid OTP!');
-            return res.redirect('/user/verify'); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+            return res.redirect('/user/verifyOTP/'+user_id); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 
         }else if(Date.now()> otp.expiresAt){
 
@@ -102,8 +94,8 @@ module.exports.verifyEmailPath2=async function(req,res){
     }
 }
 
-module.exports.renderOtp= async function(req,res){
-    var user_id=req.params['id'];
-    let user =await User.findById(user_id);
-    return res.render('otp',{user:user});
+module.exports.renderOTP= function(req, res){
+    let user= req.params;
+    console.log("USer from rendeROTP", user);
+    return res.render('otp', {user: user});
 }
