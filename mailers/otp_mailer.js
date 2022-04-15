@@ -36,7 +36,7 @@ module.exports.sendOTPVerificationEmail = async function (req,user) {
                 createdAt: Date.now(),
                 expiresAt: Date.now() + 3600000
             });
-
+            console.log("New otp verification:", newOTPVerification)
             return;
         });
 
