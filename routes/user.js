@@ -12,6 +12,7 @@ router.get('/sign-out', userController.destroySession);
 router.post('/verify/:id', userController.verifyEmailPath);
 
 router.get('/verifyOTP/:id', userController.renderOTP);
+router.get('/verifyOTP', userController.renderOTP);
 
 
 module.exports=router;

@@ -12,6 +12,7 @@ const passportLocal=require('./config/passport-local-strategy');
 const passportGoogle=require('./config/passport-google-oauth2-strategy');
 const flash=require('connect-flash');
 const customMware= require('./config/middleware');
+const path= require('path');
 
 //layout
 //const expressLayouts= require('express-ejs-layouts');
@@ -58,7 +59,9 @@ app.use(customMware.setFlash);
 
 //routes
 app.use('/', require('./routes/index'));
-
+// app.route('/*').get(function(req, res) { 
+//     return res.sendFile('home', path.join(__dirname)); 
+// });
 
 
 app.listen(port, function(error){
