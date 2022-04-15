@@ -2,6 +2,7 @@ const User = require('../models/user');
 const Otp= require('../models/otp');
 const bcrypt= require('bcrypt');
 const otpMailer= require('../mailers/otp_mailer');
+const url = require('url'); // built-in utility
 
 module.exports.create = async function (req, res) {
     try {
@@ -16,10 +17,10 @@ module.exports.create = async function (req, res) {
             req.body.verified= false;
             const userr=await User.create(req.body);
             console.log("User data: ",userr);
-            await otpMailer.sendOTPVerificationEmail(req,userr);
-            console.log("After sendOTPVerificationEmail");
-            res.user=userr;
-            return res.redirect('/user/verify/');
+
+            otpMailer.sendOTPEmail(req,userr,"otpVerification");
+            let user_id= userr._id;
+            return res.redirect('/user/verifyOTP/'+user_id);
         }
         return res.redirect('/?err_msg=' + 'User already exist');
         // return res.render('home',  {err_msg: 'User already exist!!!!!!!!!!!!!'});
@@ -45,7 +46,7 @@ module.exports.tasks=function(req,res){
     return res.render('task');
 }
 
-module.exports.verifyEmail=async function(req,res){
+module.exports.verifyEmailPath=async function(req,res){
     try{
         console.log('Inside verifyEMail');
         var user_id=req.params['id'];
@@ -56,8 +57,8 @@ module.exports.verifyEmail=async function(req,res){
         let user =await User.findById(user_id);
         if(! await bcrypt.compare(user_otp, otp.otp)){
             console.log('OTP Compare');
-            req.flash('error', 'Invalid OTP!');
-            return res.redirect('back'); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+            req.flash('error', 'Invalid OTP! Please re-enter the OTP again.');
+            return res.redirect('/user/verifyOTP/'+user_id); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 
         }else if(Date.now()> otp.expiresAt){
 
@@ -80,10 +81,17 @@ module.exports.verifyEmail=async function(req,res){
     }
 }
 
-module.exports.renderOtp= async function(req,res){
-    console.log("Request in render otp:", req);
-    console.log("Response in render otp: ",res);
-    // console.log("Response render time:",res.query);
-    // const user=await User.findOne({"email":res.query.email});
-    return res.render('otp');
+module.exports.renderOTP= async function(req, res){
+    let user= req.params;
+    console.log("USer from rendeROTP", user);
+    return res.render('otp', {user: user});
+}
+
+module.exports.resendOtp= async function(req,res){
+    const user_id=req.query.id;
+    console.log("Request Query: ",req.query);
+    const user=await User.findById(user_id);
+    await otpMailer.sendOTPEmail(req,user,"resendOtp");
+    req.flash('success', 'New OTP has been sent to your email. Please enter the OTP.');
+    return res.redirect('/user/verifyOTP/'+user_id); 
 }

@@ -58,6 +58,9 @@ app.use(customMware.setFlash);
 
 //routes
 app.use('/', require('./routes/index'));
+// app.route('/*').get(function(req, res) { 
+//     return res.sendFile(path.join(config.root, 'index.html')); 
+// });
 
 
 
