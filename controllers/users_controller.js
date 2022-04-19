@@ -10,23 +10,18 @@ module.exports.create = async function (req, res) {
             console.log("Password and confirm password not same");
             return res.redirect('back'); 
         }
-
-        
         const hashedPassword= await bcrypt.hash(req.body.password, 10);
         req.body.password= hashedPassword;
-
         var user = await User.findOne({ email: req.body.email });
         if (!user) {
             req.body.verified= false;
             const userr=await User.create(req.body);
             console.log("User data: ",userr);
 
-            otpMailer.sendOTPVerificationEmail(req,userr);
+            otpMailer.sendOTPEmail(req,userr,"otpVerification");
             let user_id= userr._id;
             return res.redirect('/user/verifyOTP/'+user_id);
         }
-
-
         return res.redirect('/?err_msg=' + 'User already exist');
         // return res.render('home',  {err_msg: 'User already exist!!!!!!!!!!!!!'});
 
@@ -54,7 +49,6 @@ module.exports.tasks=function(req,res){
 module.exports.verifyEmailPath=async function(req,res){
     try{
         console.log('Inside verifyEMail');
-
         var user_id=req.params['id'];
         const otp=await Otp.findOne({user_id:user_id});
         console.log("Otp: ",otp);
@@ -63,8 +57,8 @@ module.exports.verifyEmailPath=async function(req,res){
         let user =await User.findById(user_id);
         if(! await bcrypt.compare(user_otp, otp.otp)){
             console.log('OTP Compare');
-            req.flash('error', 'Invalid OTP!');
-            return res.redirect('/user/verifyOTP/'+user_id); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+            req.flash('error', 'Invalid OTP! Please re-enter the OTP again.');
+            return res.redirect('/user/verifyOTP/?user_id=user_id'); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 
         }else if(Date.now()> otp.expiresAt){
 
@@ -74,28 +68,30 @@ module.exports.verifyEmailPath=async function(req,res){
             req.flash('error', 'OTP Time Expired!');
             return res.redirect('back');
         }
-
         console.log('OTP Valid');
-
         user= await User.findByIdAndUpdate(user_id, {verified: true});
         // user.verified= true;
         // user.save();
         await Otp.findByIdAndDelete(otp._id);
-
-        
-
         req.flash('success', 'Signed Up successfully! Please Login to Continue');
-
         return res.redirect('/');
-
     }catch(e){
         console.log("Error: ",e);
         return;
     }
 }
 
-module.exports.renderOTP= function(req, res){
-    let user= req.params;
-    console.log("USer from rendeROTP", user);
+module.exports.renderOTP= async function(req, res){
+    let user= req.query.user_id;
+    console.log("User from rendeROTP", user);
     return res.render('otp', {user: user});
+}
+
+module.exports.resendOtp= async function(req,res){
+    const user_id=req.query.id;
+    console.log("Request Query: ",req.query);
+    const user=await User.findById(user_id);
+    await otpMailer.sendOTPEmail(req,user,"resendOtp");
+    req.flash('success', 'New OTP has been sent to your email. Please enter the OTP.');
+    return res.redirect('/user/verifyOTP/'+user_id); 
 }

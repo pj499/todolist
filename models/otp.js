@@ -1,7 +1,8 @@
 const mongoose=require('mongoose');
 const otpSchema=new mongoose.Schema({
     user_id:{
-        type: String
+        type: String,
+        unique: true
     },
     otp:{
         type:String

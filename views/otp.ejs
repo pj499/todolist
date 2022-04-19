@@ -7,9 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Today List</title>
     <link rel="stylesheet" href="/css/otp.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css"
+        integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js" integrity="sha512-mgZL3SZ/vIooDg2mU2amX6NysMlthFl/jDbscSRgF/k3zmICLe6muAs7YbITZ+61FeUoo1plofYAocoR5Sa1rQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"
+        integrity="sha512-mgZL3SZ/vIooDg2mU2amX6NysMlthFl/jDbscSRgF/k3zmICLe6muAs7YbITZ+61FeUoo1plofYAocoR5Sa1rQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -17,21 +21,24 @@
         <h1>Enter 6 Digit OTP Sent On Your Mail.</h1>
         <form action="/user/verify/<%=user.id%>" method="post">
             <div id="otp" class="flex justify-center">
-                <input class="form-control form-control-solid" name ="otp_digit1" type="text" id="first" maxlength="1" />
-                <input class="form-control form-control-solid" name ="otp_digit2" type="text" id="second" maxlength="1" />
-                <input class="form-control form-control-solid" name ="otp_digit3" type="text" id="third" maxlength="1" />
-                <input class="form-control form-control-solid" name ="otp_digit4" type="text" id="fourth" maxlength="1" />
-                <input class="form-control form-control-solid" name ="otp_digit5" type="text" id="fifth" maxlength="1" />
-                <input class="form-control form-control-solid" name ="otp_digit6" type="text" id="sixth" maxlength="1" />
+                <input class="form-control form-control-solid" name="otp_digit1" type="text" id="first" maxlength="1" />
+                <input class="form-control form-control-solid" name="otp_digit2" type="text" id="second"
+                    maxlength="1" />
+                <input class="form-control form-control-solid" name="otp_digit3" type="text" id="third" maxlength="1" />
+                <input class="form-control form-control-solid" name="otp_digit4" type="text" id="fourth"
+                    maxlength="1" />
+                <input class="form-control form-control-solid" name="otp_digit5" type="text" id="fifth" maxlength="1" />
+                <input class="form-control form-control-solid" name="otp_digit6" type="text" id="sixth" maxlength="1" />
             </div>
             <button class="otp-button" type="submit">Submit</button>
         </form>
+        <form action="/user/resendOtp/?id=<%=user.id%>" method="post" style="margin: 0; padding: 0; height: 50px;">
+            <button class="otp-button" type="submit">Resend OTP</button>
+        </form>
 
-        <button class="otp-button" type="submit">Resend OTP</button>
-        
     </div>
-   
-    
+
+
     <script src="/js/otp_field.js"></script>
     <%- include('_noty'); -%>
 </body>
@@ -39,4 +46,5 @@
 <script>
     history.replaceState({}, null, "http://localhost:3000/user/verifyOTP");
 </script>
+
 </html>
