@@ -10,8 +10,9 @@ router.get('/auth/google/callback',passport.authenticate('google',{failureRedire
 router.get('/task',passport.checkAuthentication,userController.tasks);
 router.get('/sign-out', userController.destroySession);
 router.post('/verify/:id', userController.verifyEmailPath);
-router.get('/verifyOTP/', userController.renderOTP);
+router.get('/verifyOTP/:id', userController.renderOTP);
 router.post('/resendOtp/',userController.resendOtp);
+router.get('/verifyOTP', userController.refreshOTP);
 
 
 module.exports=router;

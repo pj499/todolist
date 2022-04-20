@@ -4,6 +4,8 @@ const bcrypt= require('bcrypt');
 const otpMailer= require('../mailers/otp_mailer');
 const url = require('url'); // built-in utility
 
+// let globalUser='';
+
 module.exports.create = async function (req, res) {
     try {
         if (req.password != req.confirm_password) {
@@ -58,7 +60,7 @@ module.exports.verifyEmailPath=async function(req,res){
         if(! await bcrypt.compare(user_otp, otp.otp)){
             console.log('OTP Compare');
             req.flash('error', 'Invalid OTP! Please re-enter the OTP again.');
-            return res.redirect('/user/verifyOTP/?user_id=user_id'); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+            return res.redirect('/user/verifyOTP/'+user_id); //NOT WORKINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 
         }else if(Date.now()> otp.expiresAt){
 
@@ -82,8 +84,12 @@ module.exports.verifyEmailPath=async function(req,res){
 }
 
 module.exports.renderOTP= async function(req, res){
-    let user= req.query.user_id;
-    console.log("User from rendeROTP", user);
+    let user= req.params;
+    // console.log("User from renderOTP", user);
+    // console.log('renderOTP cookie' ,req.cookies);
+
+    res.cookie('user', user);
+
     return res.render('otp', {user: user});
 }
 
@@ -94,4 +100,9 @@ module.exports.resendOtp= async function(req,res){
     await otpMailer.sendOTPEmail(req,user,"resendOtp");
     req.flash('success', 'New OTP has been sent to your email. Please enter the OTP.');
     return res.redirect('/user/verifyOTP/'+user_id); 
+}
+
+module.exports.refreshOTP= async function(req, res){
+    // console.log('refreshOTP cookie' ,req.cookies);
+    return res.render('otp', {user: req.cookies.user});
 }

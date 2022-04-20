@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"
         integrity="sha512-mgZL3SZ/vIooDg2mU2amX6NysMlthFl/jDbscSRgF/k3zmICLe6muAs7YbITZ+61FeUoo1plofYAocoR5Sa1rQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -44,7 +45,33 @@
 </body>
 
 <script>
-    history.replaceState({}, null, "http://localhost:3000/user/verifyOTP");
+    const userID= "<%=user.id%>";
+console.log("user in otp page" , userID);
+
+// window.onbeforeunload=function() {
+//     history.back();
+// }
+
+
+history.pushState({}, null, "http://localhost:3000/user/verifyOTP");
+// window.onload= function(){
+//     window.location.href='http://localhost:3000/user/verifyOTP/'+userID;
+//     history.replaceState({}, null, "http://localhost:3000/user/verifyOTP");
+
+// }
+
+// if (window.performance) {
+//   console.info("window.performance works fine on this browser");
+// }
+// console.info(performance.navigation.type);
+// if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+//   console.info( "This page is reloaded" );
+// //   history.replaceState({}, null, "http://localhost:3000/user/verifyOTP/"+user.id);
+// } else {
+//   console.info( "This page is not reloaded");
+// }
+
+   
 </script>
 
 </html>
