@@ -3,6 +3,7 @@ const Otp= require('../models/otp');
 const bcrypt= require('bcrypt');
 const otpMailer= require('../mailers/otp_mailer');
 const url = require('url'); // built-in utility
+const store= require('store2');
 
 // let globalUser='';
 
@@ -88,8 +89,10 @@ module.exports.renderOTP= async function(req, res){
     // console.log("User from renderOTP", user);
     // console.log('renderOTP cookie' ,req.cookies);
 
-    res.cookie('user', user);
+    // res.cookie('user', user);
 
+    store('user', user);
+    
     return res.render('otp', {user: user});
 }
 
@@ -104,5 +107,8 @@ module.exports.resendOtp= async function(req,res){
 
 module.exports.refreshOTP= async function(req, res){
     // console.log('refreshOTP cookie' ,req.cookies);
-    return res.render('otp', {user: req.cookies.user});
+    // return res.render('otp', {user: req.cookies.user});
+    console.log('User in refreshOTP localStorage' ,store('user'));
+    console.log('LOCAL STORAGE', store.getAll());
+    return res.render('otp', {user: store('user')});
 }
