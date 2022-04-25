@@ -9,31 +9,47 @@
 
     <link rel="stylesheet" href="/css/task.css">
     <link rel="stylesheet" href="/css/_navbar.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css"
+        integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js" integrity="sha512-mgZL3SZ/vIooDg2mU2amX6NysMlthFl/jDbscSRgF/k3zmICLe6muAs7YbITZ+61FeUoo1plofYAocoR5Sa1rQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"
+        integrity="sha512-mgZL3SZ/vIooDg2mU2amX6NysMlthFl/jDbscSRgF/k3zmICLe6muAs7YbITZ+61FeUoo1plofYAocoR5Sa1rQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
 
-    
+
     <%- include('_navbar'); -%>
-
-   
-    <h1>Tasks</h1>
-
-    <!-- <% if(flash.success && flash.success.length>0) {%>
-        <h2>
-            <%= flash.success%>
-        </h2>
-    <%}%> -->
-    <% if(flash.error && flash.error.length>0) {%>
-        <h2>
-            <%= flash.error%>
-        </h2>
-    <%}%>
-    
-    <%- include('_noty'); -%>
+        <div id="todaylist-container">
+            <h1 class="heading">TODAY LIST</h1>
+            <div id="task-details">
+                <div id="task-description">
+                    <h4 class="description-heading">DESCRIPTION</h4>
+                    <div id="task-input">
+                        <textarea type="text" placeholder="What do you need to do?"></textarea>
+                    </div>
+                </div>
+                <div id="category-date">
+                    <div id="category">
+                        <h4 class="description-heading">CATEGORY</h4>
+                        <div id="choose-category">
+                            <select name="category" id="select-category">
+                                <option value="" disabled selected>Choose a category</option>
+                                <option value="personal">Personal</option>
+                                <option value="work">Work</option>
+                                <option value="study">Study</option>
+                                <option value="workout">Workout</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="date"></div>
+                </div>
+            </div>
+        </div>
+        <%- include('_noty'); -%>
 </body>
 
 </html>

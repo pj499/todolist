@@ -25,7 +25,8 @@ module.exports.create = async function (req, res) {
             let user_id= userr._id;
             return res.redirect('/user/verifyOTP/'+user_id);
         }
-        return res.redirect('/?err_msg=' + 'User already exist');
+        req.flash('error','Email already exists. Please try with different Email.')
+        return res.redirect('back');
         // return res.render('home',  {err_msg: 'User already exist!!!!!!!!!!!!!'});
 
     }catch(e){
@@ -40,8 +41,8 @@ module.exports.createSession=function(req,res){
 }
 
 module.exports.destroySession= function(req, res){
+    req.flash('success',"Signed Out Successfully!");
     req.logout();
-
     return res.redirect('/');
 }
 

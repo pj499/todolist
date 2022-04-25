@@ -45,33 +45,9 @@
 </body>
 
 <script>
-    const userID= "<%=user.id%>";
-console.log("user in otp page" , userID);
-
-// window.onbeforeunload=function() {
-//     history.back();
-// }
-
-
-history.pushState({}, null, "http://localhost:3000/user/verifyOTP");
-// window.onload= function(){
-//     window.location.href='http://localhost:3000/user/verifyOTP/'+userID;
-//     history.replaceState({}, null, "http://localhost:3000/user/verifyOTP");
-
-// }
-
-// if (window.performance) {
-//   console.info("window.performance works fine on this browser");
-// }
-// console.info(performance.navigation.type);
-// if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-//   console.info( "This page is reloaded" );
-// //   history.replaceState({}, null, "http://localhost:3000/user/verifyOTP/"+user.id);
-// } else {
-//   console.info( "This page is not reloaded");
-// }
-
-   
+//     const userID= "<%=user.id%>";
+// console.log("user in otp page" , userID);
+history.replaceState({}, null, "http://localhost:3000/user/verifyOTP");
 </script>
 
 </html>
