@@ -38,18 +38,28 @@
                             <select name="category" id="select-category">
                                 <option value="" disabled selected>Choose a category</option>
                                 <option value="personal">Personal</option>
-                                <option value="work">Work</option>
+                                <option value="work" id="op1">Work</option>
                                 <option value="study">Study</option>
                                 <option value="workout">Workout</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
                     </div>
-                    <div id="date"></div>
+                    <div id="date">
+                        <h4 class="description-heading">DUE TIME</h4>
+                        <input type="time" name="due_time">
+                    </div>
                 </div>
             </div>
         </div>
         <%- include('_noty'); -%>
 </body>
 
+<script>
+    var today= new Date(); 
+    console.log(today.getHours()+':'+today.getMinutes());
+    console.log(document.getElementsByName('due_time')[0].innerHTML);
+    // .min= today.getTime();
+    // document.getElementById('date').innerHTML= today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear();
+</script>
 </html>
