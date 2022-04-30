@@ -23,7 +23,7 @@
 
     <%- include('_navbar'); -%>
         <div id="todaylist-container">
-            <h1 class="heading">TODAY LIST</h1>
+            <h1 class="heading">TODO LIST</h1>
             <div id="task-details">
                 <div id="task-description">
                     <h4 class="description-heading">DESCRIPTION</h4>
@@ -46,8 +46,9 @@
                         </div>
                     </div>
                     <div id="date">
-                        <h4 class="description-heading">DUE TIME</h4>
-                        <input type="time" name="due_time">
+                        <h4 class="description-heading">DUE DATE AND TIME</h4>
+                        <input type="datetime-local" name="due_date">
+                        <!-- <input type="time" name="due_time"> -->
                     </div>
                 </div>
             </div>
@@ -56,10 +57,10 @@
 </body>
 
 <script>
-    var today= new Date(); 
+    // var today= new Date(); 
     console.log(today.getHours()+':'+today.getMinutes());
-    console.log(document.getElementsByName('due_time')[0].innerHTML);
-    // .min= today.getTime();
-    // document.getElementById('date').innerHTML= today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear();
+    console.log(document.getElementsByName('due_date')[0].innerHTML);
+    var today = new Date().toISOString().slice(0, 16);
+    document.getElementsByName("book")[0].min = today;
 </script>
 </html>
