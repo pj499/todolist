@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css"
         integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://use.fontawesome.com/3128b68454.js"></script>
+
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"
         integrity="sha512-mgZL3SZ/vIooDg2mU2amX6NysMlthFl/jDbscSRgF/k3zmICLe6muAs7YbITZ+61FeUoo1plofYAocoR5Sa1rQ=="
@@ -53,12 +56,34 @@
                 </div>
             </div>
             <div id="task-buttons">
-                <button type="submit" class="task-button" style="background-color: #444444;"><img src="https://cdn-icons.flaticon.com/png/512/3524/premium/3524388.png?token=exp=1651250910~hmac=e2350d2898f2d12bf980e679812446b9" width="15px" height="15px">&nbsp ADD TASK</button>
-                <button type="submit" class="task-button" style="background-color: #ee351e;"><img src="https://cdn-icons.flaticon.com/png/512/3405/premium/3405244.png?token=exp=1651251110~hmac=303a804b18a1c8da918edc1109c8a360" width="17px" height="17px">&nbsp DELETE TASKS</button>
+                <button type="submit" class="task-button" style="background-color: #444444;">
+                    <i class="fa-solid fa-plus-large"></i>&nbsp ADD TASK
+                </button>
+                <button type="submit" class="task-button" style="background-color: #ee351e;">
+                    <img src="https://cdn-icons.flaticon.com/png/128/2710/premium/2710178.png?token=exp=1651510965~hmac=1a273aebb998d2b8d8f88e5eaec63da0" width="17px" height="17px">&nbsp DELETE TASKS
+                </button>
             </div>
 
             <div id="tasks-list">
-
+                <ul>
+                    <li>
+                        <div class="task">
+                            <div class="task-left">
+                                <div class="task-left-info">
+                                    <input type="checkbox" name="task" value="" style="width: 20px; height: 20px; margin: 0 20px 0 0; outline: 2px solid; border:none;">
+                                    <label for="task"><h4>Cutesssss's Task</h4></label>
+                                </div>
+                                <div class="task-left-date">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/833/833593.png" style="width: 18px; height:18px; margin-right: 10px;">
+                                    May 03, 2022 14.44
+                                </div>
+                            </div>
+                            <div class="task-right">
+                                <div>Personal</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <%- include('_noty'); -%>
