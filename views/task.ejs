@@ -47,20 +47,27 @@
                     </div>
                     <div id="date">
                         <h4 class="description-heading">DUE DATE AND TIME</h4>
-                        <input type="datetime-local" name="due_date">
-                        <!-- <input type="time" name="due_time"> -->
+                        <input type="date" name="due_date">
+                        <input type="time" name="due_time">
                     </div>
                 </div>
+            </div>
+            <div id="task-buttons">
+                <button type="submit" class="task-button" style="background-color: #444444;"><img src="https://cdn-icons.flaticon.com/png/512/3524/premium/3524388.png?token=exp=1651250910~hmac=e2350d2898f2d12bf980e679812446b9" width="15px" height="15px">&nbsp ADD TASK</button>
+                <button type="submit" class="task-button" style="background-color: #ee351e;"><img src="https://cdn-icons.flaticon.com/png/512/3405/premium/3405244.png?token=exp=1651251110~hmac=303a804b18a1c8da918edc1109c8a360" width="17px" height="17px">&nbsp DELETE TASKS</button>
+            </div>
+
+            <div id="tasks-list">
+
             </div>
         </div>
         <%- include('_noty'); -%>
 </body>
 
 <script>
-    // var today= new Date(); 
-    console.log(today.getHours()+':'+today.getMinutes());
-    console.log(document.getElementsByName('due_date')[0].innerHTML);
-    var today = new Date().toISOString().slice(0, 16);
-    document.getElementsByName("book")[0].min = today;
+    var today= new Date(); 
+    // console.log(today.toISOString().split('T'));
+    document.getElementsByName('due_date')[0].min= new Date().toISOString().split('T')[0];
+  
 </script>
 </html>
