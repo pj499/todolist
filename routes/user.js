@@ -2,6 +2,7 @@ const express=require('express');
 const passport = require('passport');
 const router=express.Router();
 const userController=require('../controllers/users_controller');
+const taskController=require('../controllers/task_controller');
 
 router.post('/create',userController.create);
 router.post('/create-session',passport.authenticate('local',{failureRedirect:'/'}),userController.createSession);
@@ -13,6 +14,7 @@ router.post('/verify/:id', userController.verifyEmailPath);
 router.get('/verifyOTP/:id', userController.renderOTP);
 router.post('/resendOtp/',userController.resendOtp);
 router.get('/verifyOTP', userController.refreshOTP);
+router.post('/addTask',taskController.addTask);
 
 
 module.exports=router;

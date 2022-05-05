@@ -103,7 +103,7 @@ body{
                     input{
                         outline: none;
                         border: none;
-                        margin-right: 100px;
+                        margin-right: 50px;
                         margin-top: 10px;
                     }
                 }
@@ -172,10 +172,11 @@ body{
                             // border: 1px solid purple;
                             position: relative;
                             div{
+
                                 width: 80px;
                                 height: 40px;
                                 padding-top: 10px;
-                                // box-sizing: border-box;
+                                box-sizing: border-box;
                                 text-align: center;
                                 background-color: lightpink;
                                 position: absolute;

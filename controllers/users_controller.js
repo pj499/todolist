@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Otp= require('../models/otp');
+const Task=require('../models/task');
 const bcrypt= require('bcrypt');
 const otpMailer= require('../mailers/otp_mailer');
 const url = require('url'); // built-in utility
@@ -46,8 +47,13 @@ module.exports.destroySession= function(req, res){
     return res.redirect('/');
 }
 
-module.exports.tasks=function(req,res){
-    return res.render('task');
+module.exports.tasks=async function(req,res){
+    try{
+        console.log('Request: ',req.user);
+        return res.render('task');
+    }catch(e){
+        return res.redirect('back');
+    }
 }
 
 module.exports.verifyEmailPath=async function(req,res){

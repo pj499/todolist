@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css"
         integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/3128b68454.js"></script>
 
 
@@ -25,56 +26,63 @@
 
 
     <%- include('_navbar'); -%>
+    <form action="user/addTask" method="post" id="new-task-form">
         <div id="todaylist-container">
             <h1 class="heading">TODO LIST</h1>
-            <div id="task-details">
-                <div id="task-description">
-                    <h4 class="description-heading">DESCRIPTION</h4>
-                    <div id="task-input">
-                        <textarea type="text" placeholder="What do you need to do?"></textarea>
-                    </div>
-                </div>
-                <div id="category-date">
-                    <div id="category">
-                        <h4 class="description-heading">CATEGORY</h4>
-                        <div id="choose-category">
-                            <select name="category" id="select-category">
-                                <option value="" disabled selected>Choose a category</option>
-                                <option value="personal">Personal</option>
-                                <option value="work" id="op1">Work</option>
-                                <option value="study">Study</option>
-                                <option value="workout">Workout</option>
-                                <option value="other">Other</option>
-                            </select>
+                <div id="task-details">
+                    <div id="task-description">
+                        <h4 class="description-heading">DESCRIPTION</h4>
+                        <div id="task-input">
+                            <textarea type="text" placeholder="What do you need to do?" name="description"></textarea>
                         </div>
                     </div>
-                    <div id="date">
-                        <h4 class="description-heading">DUE DATE AND TIME</h4>
-                        <input type="date" name="due_date">
-                        <input type="time" name="due_time">
+                    <div id="category-date">
+                        <div id="category">
+                            <h4 class="description-heading">CATEGORY</h4>
+                            <div id="choose-category">
+                                <select name="category" id="select-category">
+                                    <option value="" disabled selected>Choose a category</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="work" id="op1">Work</option>
+                                    <option value="study">Study</option>
+                                    <option value="workout">Workout</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="date">
+                            <h4 class="description-heading">DUE DATE AND TIME</h4>
+                            <input type="date" name="due_date">
+                            <input type="time" name="due_time">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="task-buttons">
-                <button type="submit" class="task-button" style="background-color: #444444;">
-                    <i class="fa-solid fa-plus-large"></i>&nbsp ADD TASK
-                </button>
-                <button type="submit" class="task-button" style="background-color: #ee351e;">
-                    <img src="https://cdn-icons.flaticon.com/png/128/2710/premium/2710178.png?token=exp=1651510965~hmac=1a273aebb998d2b8d8f88e5eaec63da0" width="17px" height="17px">&nbsp DELETE TASKS
-                </button>
-            </div>
+                <div id="task-buttons">
+                    <button type="submit" class="task-button" style="background-color: #444444;">
+                        <i class="fa-solid fa-plus-large"></i>&nbsp ADD TASK
+                    </button>
 
+                    <button type="submit" class="task-button" style="background-color: #ee351e;">
+                        <img src="https://cdn-icons.flaticon.com/png/128/2710/premium/2710178.png?token=exp=1651510965~hmac=1a273aebb998d2b8d8f88e5eaec63da0"
+                            width="17px" height="17px">&nbsp DELETE TASKS
+                    </button>
+                </div>
+            
             <div id="tasks-list">
                 <ul>
                     <li>
                         <div class="task">
                             <div class="task-left">
                                 <div class="task-left-info">
-                                    <input type="checkbox" name="task" value="" style="width: 20px; height: 20px; margin: 0 20px 0 0; outline: 2px solid; border:none;">
-                                    <label for="task"><h4>Cutesssss's Task</h4></label>
+                                    <input type="checkbox" name="task" value=""
+                                        style="width: 20px; height: 20px; margin: 0 20px 0 0; border:none;">
+                                    <label for="task">
+                                        <h4>Cutesssss's Task</h4>
+                                    </label>
                                 </div>
                                 <div class="task-left-date">
-                                    <img src="https://cdn-icons-png.flaticon.com/128/833/833593.png" style="width: 18px; height:18px; margin-right: 10px;">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/833/833593.png"
+                                        style="width: 18px; height:18px; margin-right: 10px;">
                                     May 03, 2022 14.44
                                 </div>
                             </div>
@@ -86,13 +94,15 @@
                 </ul>
             </div>
         </div>
+    </form>
         <%- include('_noty'); -%>
 </body>
-
+<script src="/js/task.js"></script>
 <script>
-    var today= new Date(); 
+    var today = new Date();
     // console.log(today.toISOString().split('T'));
-    document.getElementsByName('due_date')[0].min= new Date().toISOString().split('T')[0];
-  
+    document.getElementsByName('due_date')[0].min = new Date().toISOString().split('T')[0];
+
 </script>
+
 </html>
