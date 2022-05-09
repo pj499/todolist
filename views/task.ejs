@@ -42,11 +42,11 @@
                             <div id="choose-category">
                                 <select name="category" id="select-category">
                                     <option value="" disabled selected>Choose a category</option>
-                                    <option value="personal">Personal</option>
-                                    <option value="work" id="op1">Work</option>
-                                    <option value="study">Study</option>
-                                    <option value="workout">Workout</option>
-                                    <option value="other">Other</option>
+                                    <option value="Personal">Personal</option>
+                                    <option value="Work" id="op1">Work</option>
+                                    <option value="Study">Study</option>
+                                    <option value="Workout">Workout</option>
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
                         </div>
@@ -70,27 +70,29 @@
             
             <div id="tasks-list">
                 <ul>
-                    <li>
-                        <div class="task">
-                            <div class="task-left">
-                                <div class="task-left-info">
-                                    <input type="checkbox" name="task" value=""
-                                        style="width: 20px; height: 20px; margin: 0 20px 0 0; border:none;">
-                                    <label for="task">
-                                        <h4>Cutesssss's Task</h4>
-                                    </label>
+                    <% for(task of tasks){ %>
+                        <li>
+                            <div class="task">
+                                <div class="task-left">
+                                    <div class="task-left-info">
+                                        <input type="checkbox" name="task" value=""
+                                            style="width: 20px; height: 20px; margin: 0 20px 0 0; border:none;">
+                                        <label for="task">
+                                            <h4><%= task.description %></h4>
+                                        </label>
+                                    </div>
+                                    <div class="task-left-date">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/833/833593.png"
+                                            style="width: 18px; height:18px; margin-right: 10px;">
+                                        <%= task.due_date %>&nbsp &nbsp <%= task.due_time %>
+                                    </div>
                                 </div>
-                                <div class="task-left-date">
-                                    <img src="https://cdn-icons-png.flaticon.com/128/833/833593.png"
-                                        style="width: 18px; height:18px; margin-right: 10px;">
-                                    May 03, 2022 14.44
+                                <div class="task-right">
+                                    <div><%= task.category %></div>
                                 </div>
                             </div>
-                            <div class="task-right">
-                                <div>Personal</div>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    <% } %>
                 </ul>
             </div>
         </div>

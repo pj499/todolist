@@ -50,7 +50,17 @@ module.exports.destroySession= function(req, res){
 module.exports.tasks=async function(req,res){
     try{
         console.log('Request: ',req.user);
-        return res.render('task');
+
+        const user= await User.findById(req.user._id);
+        const tasks= await Task.find(
+            {'user': req.user._id}
+        );
+        console.log('Taskssssss', tasks);
+
+        return res.render('task', {
+           tasks: tasks
+        });
+
     }catch(e){
         return res.redirect('back');
     }

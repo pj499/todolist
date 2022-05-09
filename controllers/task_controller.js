@@ -4,9 +4,7 @@ const User = require('../models/user')
 module.exports.addTask = async function (req, res) {
     try {
         console.log("Inside add task");
-        console.log('Response: ',res.locals.user);
-        console.log("Body: ",req.body);
-        console.log('User: ',req.user);
+       
         const task = await Task.create({
             ...req.body,
             user: req.user._id
