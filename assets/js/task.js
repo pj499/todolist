@@ -31,17 +31,26 @@ let newTaskDom = function (task) {
 </li>`);
 };
 
-let createTask = function () {
+let createTask = async function () {
+  var timedata = await $.getJSON("https://ipapi.co/json/");
+  const timezone = timedata.timezone;
+  console.log("Data of ip: ", timezone);
+
   let newTaskForm = $("#new-task-form");
+
   newTaskForm.submit(function (e) {
     e.preventDefault();
     // $("input").val("");
+
+    var data = newTaskForm.serialize();
+    data = data + "&timezone=" + `${timezone}`;
+
     $.ajax({
       type: "post",
       url: "/user/addTask",
-      data: newTaskForm.serialize(),
+      data: data,
+
       success: function (data) {
-        console.log("AJAX add task", data);
         let newTask = newTaskDom(data.data.task);
         $("#tasks-list>ul").prepend(newTask);
       },

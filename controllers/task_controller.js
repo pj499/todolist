@@ -3,12 +3,14 @@ const User = require("../models/user");
 
 module.exports.addTask = async function (req, res) {
   try {
-    console.log("Request", req);
+    // console.log("Request from addtask", req.body);
 
+    const d = new Date().toLocaleString("en-US", {
+      timeZone: req.body.timezone,
+    });
+
+    console.log("date", d);
     let current_date = new Date().toISOString().split("T")[0];
-    let current_time = new Date().toISOString().split("T")[1];
-
-    console.log("date", new Date().getHours());
 
     let date = req.body.due_date;
     let year = date.substring(0, 4);

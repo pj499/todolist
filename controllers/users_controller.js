@@ -51,7 +51,7 @@ module.exports.destroySession = function (req, res) {
 
 module.exports.tasks = async function (req, res) {
   try {
-    console.log("Request: ", req.user);
+    // console.log("Request: ", req.user);
 
     const user = await User.findById(req.user._id);
     const tasks = await Task.find({ user: req.user._id }).sort({ due_date: 1 });
