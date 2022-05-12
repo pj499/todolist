@@ -134,5 +134,14 @@
     document.getElementsByName("due_date")[0].min = new Date()
       .toISOString()
       .split("T")[0];
+
+    function getTimeZone() {
+      $.getJSON("https://ipapi.co/json/", function (data) {
+        // Setting text of element P with id gfg
+        console.log("Data from API", data);
+      });
+    }
+
+    getTimeZone();
   </script>
 </html>
