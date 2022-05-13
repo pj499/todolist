@@ -135,11 +135,9 @@
       .toISOString()
       .split("T")[0];
 
-    function getTimeZone() {
-      $.getJSON("https://ipapi.co/json/", function (data) {
-        // Setting text of element P with id gfg
-        console.log("Data from API", data);
-      });
+    async function getTimeZone() {
+      var data = await $.getJSON("https://ipapi.co/json/");
+      console.log("Data of ip: ",data);
     }
 
     getTimeZone();
