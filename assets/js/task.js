@@ -51,6 +51,10 @@ let createTask = async function () {
       data: data,
 
       success: function (data) {
+        if (data.message == "Task is not Created!") {
+          console.log("inside success if");
+          return;
+        }
         let newTask = newTaskDom(data.data.task);
         $("#tasks-list>ul").prepend(newTask);
       },
