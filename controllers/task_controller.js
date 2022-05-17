@@ -68,15 +68,16 @@ module.exports.addTask = async function (req, res) {
   console.log("Due Date", dueDate);
   console.log("Due TIme", dueTime);
 
-  if (currentDate == dueDate && dueTime < currentTime && req.xhr) {
+  let dueTimeLength = dueTime.length;
+  let currentTimeLength = currentTime.length;
+  if (
+    currentDate == dueDate &&
+    (dueTime < currentTime ||
+      dueTime[dueTimeLength - 2] < currentTime[currentTimeLength - 2]) &&
+    req.xhr
+  ) {
     console.log("inside check");
-    req.flash(
-      "Due Time should not be less than current time. Kindly check again!"
-    );
-
-    return res.status(200).json({
-      message: "Task is not Created!",
-    });
+    return res.status(400).redirect("back");
   }
 
   const task = await Task.create({
@@ -90,7 +91,6 @@ module.exports.addTask = async function (req, res) {
   user.save();
   // console.log("User task: ", user.tasks);
   if (req.xhr) {
-    req.flash("success", "Task Created Successfully!");
     return res.status(200).json({
       data: {
         task: task,

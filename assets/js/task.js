@@ -51,10 +51,28 @@ let createTask = async function () {
       data: data,
 
       success: function (data) {
-        if (data.message == "Task is not Created!") {
+        if (typeof data.data == "undefined") {
           console.log("inside success if");
+
+          new Noty({
+            theme: "metroui",
+            text: "Due Time should not be less than current time. Kindly check again!",
+            type: "error",
+            layout: "topRight",
+            timeout: 5000,
+          }).show();
+
           return;
         }
+
+        new Noty({
+          theme: "metroui",
+          text: "Task Created Successfully!",
+          type: "success",
+          layout: "topRight",
+          timeout: 2000,
+        }).show();
+
         let newTask = newTaskDom(data.data.task);
         $("#tasks-list>ul").prepend(newTask);
       },
