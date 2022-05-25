@@ -15,6 +15,7 @@ router.get('/verifyOTP/:id', userController.renderOTP);
 router.post('/resendOtp/',userController.resendOtp);
 router.get('/verifyOTP', userController.refreshOTP);
 router.post('/addTask',taskController.addTask);
+router.get('/deleteTask/:id',taskController.deleteTask);
 
 
 module.exports=router;

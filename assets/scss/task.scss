@@ -171,6 +171,16 @@ body{
                             height: 100%;
                             // border: 1px solid purple;
                             position: relative;
+                            .delete-task{
+                                margin-left: 85%;
+                                margin-top: 3%;
+                                cursor: pointer;
+                                position: absolute;
+                                text-decoration: none;
+                                color: #666666;
+                                font-size: 1.1rem;
+                                font-weight: bolder;
+                            }
                             div{
 
                                 width: 80px;

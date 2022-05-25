@@ -3,7 +3,7 @@ const User = require("../models/user");
 
 module.exports.addTask = async function (req, res) {
   console.log("Inside addtask");
-  // console.log("Request from addtask", req.body);
+  console.log("Request from addtask", req.user);
 
   const d = new Date().toLocaleString("en-US", {
     timeZone: req.body.timezone,
@@ -28,6 +28,9 @@ module.exports.addTask = async function (req, res) {
 
   let currentHour = d.split(",")[1].split(":")[0].replace(" ", "");
   let currentMin = d.split(",")[1].split(":")[1];
+  if(currentHour.length==1){
+      currentHour='0'+currentHour;
+  }
   let currentTime = currentHour + ":" + currentMin + " " + d.split(" ")[2];
 
   let dueDateMap = new Map([
@@ -45,8 +48,7 @@ module.exports.addTask = async function (req, res) {
     ["12", "Dec"],
   ]);
 
-  let currentDate =
-    currentDateDay + " " + dueDateMap.get(currentMonth) + " " + currentYear;
+  let currentDate = currentDateDay + " " + dueDateMap.get(currentMonth) + " " + currentYear;
 
   dueMonth = dueDateMap.get(dueMonth);
   dueDate = dueDateDay + " " + dueMonth + " " + dueYear;
@@ -99,3 +101,26 @@ module.exports.addTask = async function (req, res) {
     });
   }
 };
+
+module.exports.deleteTask = async function(req,res){
+  try{
+    console.log("Inside deleteTask");
+    console.log("request od delete task", req.params);
+    console.log('user: ',req.user);
+    var taskId=req.params.id;
+    await Task.findByIdAndDelete(taskId);
+    // var user = await User.findById(req.user._id);
+    await User.findByIdAndUpdate(req.user.id,{$pull:{tasks:taskId}});
+    if(req.xhr){
+      return res.status(200).json({
+        data:{
+          taskId
+        },
+        message:"Task Deleted Successfully!"
+      });
+    }
+    return res.redirect('back');
+  }catch(e){
+    console.log("error in delete task: ",e)
+  }
+}

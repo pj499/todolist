@@ -7,8 +7,8 @@
 // disablePrev();
 
 let newTaskDom = function (task) {
-  console.log("newtaskdom", task);
-  return $(`<li>
+    console.log("newtaskdom", task);
+    return $(`<li id="task-${task._id}">
     <div class="task">
         <div class="task-left">
             <div class="task-left-info">
@@ -25,6 +25,7 @@ let newTaskDom = function (task) {
             </div>
         </div>
         <div class="task-right">
+            <a class="delete-task" href="/user/deleteTask/${task._id}">X</a>
             <div> ${task.category} </div>
         </div>
     </div>
@@ -32,55 +33,83 @@ let newTaskDom = function (task) {
 };
 
 let createTask = async function () {
-  var timedata = await $.getJSON("https://ipapi.co/json/");
-  const timezone = timedata.timezone;
-  console.log("Data of ip: ", timezone);
+    var timedata = await $.getJSON("https://ipapi.co/json/");
+    const timezone = timedata.timezone;
+    console.log("Data of ip: ", timezone);
 
-  let newTaskForm = $("#new-task-form");
+    let newTaskForm = $("#new-task-form");
 
-  newTaskForm.submit(function (e) {
-    e.preventDefault();
-    // $("input").val("");
+    newTaskForm.submit(function (e) {
+        e.preventDefault();
+        console.log("Event: ", e.currentTarget[0]);
 
-    var data = newTaskForm.serialize();
-    data = data + "&timezone=" + `${timezone}`;
+        // $("input").val("");
+        var data = newTaskForm.serialize();
+        data = data + "&timezone=" + `${timezone}`;
+        // newTaskForm.reset();
+        $.ajax({
+            type: "post",
+            url: "/user/addTask",
+            data: data,
+            success: function (data) {
+                if (typeof data.data == "undefined") {
+                    console.log("inside success if");
 
-    $.ajax({
-      type: "post",
-      url: "/user/addTask",
-      data: data,
+                    new Noty({
+                        theme: "metroui",
+                        text: "Due Time should not be less than current time. Kindly check again!",
+                        type: "error",
+                        layout: "topRight",
+                        timeout: 5000,
+                    }).show();
+                    e.currentTarget[3].value = '';
+                    return;
+                }
 
-      success: function (data) {
-        if (typeof data.data == "undefined") {
-          console.log("inside success if");
+                new Noty({
+                    theme: "metroui",
+                    text: "Task Created Successfully!",
+                    type: "success",
+                    layout: "topRight",
+                    timeout: 2000,
+                }).show();
 
-          new Noty({
-            theme: "metroui",
-            text: "Due Time should not be less than current time. Kindly check again!",
-            type: "error",
-            layout: "topRight",
-            timeout: 5000,
-          }).show();
-
-          return;
-        }
-
-        new Noty({
-          theme: "metroui",
-          text: "Task Created Successfully!",
-          type: "success",
-          layout: "topRight",
-          timeout: 2000,
-        }).show();
-
-        let newTask = newTaskDom(data.data.task);
-        $("#tasks-list>ul").prepend(newTask);
-      },
-      error: function (error) {
-        console.log(error);
-      },
+                let newTask = newTaskDom(data.data.task);
+                $("#tasks-list>ul").prepend(newTask);
+                deleteTask($(' .delete-task',newTask));
+                e.currentTarget[0].value = '';
+                e.currentTarget[1].value = '';
+                e.currentTarget[2].value = '';
+                e.currentTarget[3].value = '';
+            },
+            error: function (error) {
+                console.log(error);
+            },
+        });
     });
-  });
 };
 
+let deleteTask=function(deleteLink){
+    $(deleteLink).click(function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'get',
+            url:$(deleteLink).prop("href"),
+            success:function(data){
+                console.log("Data for deleting post", data.data);
+                $(`#task-${data.data.taskId}`).remove();
+                new Noty({
+                    theme: "metroui",
+                    text: "Task Deleted Successfully!",
+                    type: "success",
+                    layout: "topRight",
+                    timeout: 2000,
+                }).show();
+            },
+            error:function(error){
+                console.log("error in delete post: ",error);
+            }
+        });
+    });
+}
 createTask();

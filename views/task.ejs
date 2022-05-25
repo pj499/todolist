@@ -72,7 +72,7 @@
             <i class="fa-solid fa-plus-large"></i>&nbsp ADD TASK
           </button>
 
-          <button
+          <!-- <button
             type="submit"
             class="task-button"
             style="background-color: #ee351e"
@@ -82,13 +82,13 @@
               width="17px"
               height="17px"
             />&nbsp DELETE TASKS
-          </button>
+          </button> -->
         </div>
 
         <div id="tasks-list">
           <ul>
             <% for(task of tasks){ %>
-            <li>
+            <li id="task-<%=task._id%>" >
               <div class="task">
                 <div class="task-left">
                   <div class="task-left-info">
@@ -116,6 +116,7 @@
                   </div>
                 </div>
                 <div class="task-right">
+                  <a class="delete-task" href="/user/deleteTask/<%=task._id%>">X</a>
                   <div><%= task.category %></div>
                 </div>
               </div>
