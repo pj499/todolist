@@ -88,7 +88,7 @@
         <div id="tasks-list">
           <ul>
             <% for(task of tasks){ %>
-            <li id="task-<%=task._id%>" class="task" >
+            <li id="task-<%=task._id%>" class="task">
               <div class="task">
                 <div class="task-left">
                   <div class="task-left-info">
@@ -116,7 +116,9 @@
                   </div>
                 </div>
                 <div class="task-right">
-                  <a class="delete-task" href="/user/deleteTask/<%=task._id%>">X</a>
+                  <a class="delete-task" href="/user/deleteTask/<%=task._id%>"
+                    >X</a
+                  >
                   <div><%= task.category %></div>
                 </div>
               </div>
