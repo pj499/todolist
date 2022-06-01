@@ -1,0 +1,79 @@
+body{
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    #outer-div{
+        width: 25%;
+        height: 80vh;
+        border: 1px solid gray;
+        margin: auto;
+        margin-top: 20px;
+        background-color: azure;
+        #profile-picture-outer{
+            width: 100%;
+            height: 40%;
+            border-bottom: 1px solid gray;  
+            display: flex;   
+            justify-content: space-evenly;
+            // align-items: ;
+            flex-direction: column;
+            #profile-picture{
+                width: 110px;
+                height: 110px;
+                border-radius: 50%;
+                border: 1px solid gray;
+                margin: auto;
+            }  
+            #change-profile{
+                text-align: center;
+                margin-bottom: 10px;
+                form{
+                    label{
+                        font-family: Verdana, Geneva, Tahoma, sans-serif;
+                        color: darkslategray;
+                        font-weight: 10;
+                    }
+                    label:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+            
+        }
+        #update-password{
+            width: 100%;
+            height: 59%;
+            // border: 1px solid red;
+            h4{
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-weight: 100;
+                color: dimgrey;
+                // margin-left: 30px;
+                text-align: center;
+            }
+            form{
+                margin: 0;
+                width: 100%;
+                height: 70%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                .input-box{
+                    width: 80%;
+                    height: 30px;
+                    margin: auto;
+                    background-color: bisque;
+                    // border: 1px solid green;
+                    .password-input{
+                        background-color: bisque;
+                        border: none;
+                        outline: none;
+                        width: 75%;
+                        height: 90%;
+                        padding-left:15px ;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -4,9 +4,56 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Todo List</title>
+    <link rel="stylesheet" href="/css/profile.css" />
+    <link rel="stylesheet" href="/css/_navbar.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css"
+      integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/3128b68454.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"
+      integrity="sha512-mgZL3SZ/vIooDg2mU2amX6NysMlthFl/jDbscSRgF/k3zmICLe6muAs7YbITZ+61FeUoo1plofYAocoR5Sa1rQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="/js/_navbar.js"></script>
   </head>
   <body>
-    This is Profile page
+    <%- include('_navbar'); -%>
+    <div id="outer-div" >
+      <div id="profile-picture-outer">
+        <div id="profile-picture">
+        </div>
+        <div id="change-profile">
+          <form action="/user/update-profile-picture" enctype="multipart/form-data" method="post">
+            <label for="avatar">Change profile photo</label>
+            <input type="file" name="avatar" id="avatar" placeholder="Change profile photo" style="display:none ;">
+          </form>
+        </div>  
+      </div>
+      <div id="update-password" >
+        <h4>Change Password:</h4>
+        <form action="/user/update-password" method="post">
+          <div id="old-password" class="input-box">
+            <input type="password" placeholder="Enter old password" class="password-input">
+          </div>
+          <div id="new-password" class="input-box">
+            <input type="password" placeholder="Enter new password" class="password-input">
+          </div>
+          <div id="confirm-new-password" class="input-box">
+            <input type="password" placeholder="Confirm new password" class="password-input">
+          </div>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
