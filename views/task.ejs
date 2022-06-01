@@ -24,6 +24,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+
+    <script src="/js/_navbar.js"></script>
+    <script src="/js/task.js"></script>
   </head>
 
   <body>
@@ -130,12 +133,22 @@
     </form>
     <%- include('_noty'); -%>
   </body>
-  <script src="/js/task.js"></script>
+
   <script>
     var today = new Date();
     // console.log(today.toISOString().split('T'));
     document.getElementsByName("due_date")[0].min = new Date()
       .toISOString()
       .split("T")[0];
+
+    var listContainer = document.getElementById("new-task-form");
+
+    listContainer.addEventListener("click", function () {
+      console.log("Inside listContainer", boxShow);
+      if (boxShow == true) {
+        profileBox.style.display = "none";
+        boxShow = false;
+      }
+    });
   </script>
 </html>

@@ -1,6 +1,7 @@
 var boxShow = false;
 var profilePicture = document.getElementById("profile-picture");
 var profileBox = document.getElementById("profile-box");
+var body = document.getElementsByTagName("body")[0];
 
 profilePicture.addEventListener("click", function () {
   console.log("Inside click", boxShow);
@@ -13,3 +14,4 @@ profilePicture.addEventListener("click", function () {
     boxShow = false;
   }
 });
+
