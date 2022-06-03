@@ -25,7 +25,9 @@
       referrerpolicy="no-referrer"
     ></script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <script src="/js/_navbar.js"></script>
+    
   </head>
   <body>
     <%- include('_navbar'); -%>
@@ -45,15 +47,20 @@
         <form action="/user/update-password" method="post">
           <div id="old-password" class="input-box">
             <input type="password" placeholder="Enter old password" class="password-input">
+            <i class="bi bi-eye-slash" id="toggleOldPassword"></i>
           </div>
           <div id="new-password" class="input-box">
             <input type="password" placeholder="Enter new password" class="password-input">
+            <i class="bi bi-eye-slash" id="toggleNewPassword"></i>
           </div>
           <div id="confirm-new-password" class="input-box">
             <input type="password" placeholder="Confirm new password" class="password-input">
+            <i class="bi bi-eye-slash" id="toggleConfirmPassword"></i>
           </div>
         </form>
       </div>
     </div>
   </body>
+  <script src="/js/profile.js"></script>
+  
 </html>
