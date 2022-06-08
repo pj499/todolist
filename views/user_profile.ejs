@@ -25,42 +25,77 @@
       referrerpolicy="no-referrer"
     ></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
     <script src="/js/_navbar.js"></script>
-    
+    <script src="/js/profile.js"></script>
   </head>
   <body>
     <%- include('_navbar'); -%>
-    <div id="outer-div" >
+    <div id="outer-div">
       <div id="profile-picture-outer">
-        <div id="profile-picture">
-        </div>
+        <div id="profile-picture"></div>
         <div id="change-profile">
-          <form action="/user/update-profile-picture" enctype="multipart/form-data" method="post">
+          <form
+            action="/user/update-profile-picture"
+            enctype="multipart/form-data"
+            method="post"
+          >
             <label for="avatar">Change profile photo</label>
-            <input type="file" name="avatar" id="avatar" placeholder="Change profile photo" style="display:none ;">
+            <input
+              type="file"
+              name="avatar"
+              id="avatar"
+              placeholder="Change profile photo"
+              style="display: none"
+            />
           </form>
-        </div>  
+        </div>
       </div>
-      <div id="update-password" >
+      <div id="update-password">
         <h4>Change Password:</h4>
-        <form action="/user/update-password" method="post">
+        <form
+          action="/user/update-password"
+          method="post"
+          id="update-password-form"
+        >
           <div id="old-password" class="input-box">
-            <input type="password" placeholder="Enter old password" class="password-input">
+            <input
+              type="password"
+              name="oldPassword"
+              placeholder="Enter old password"
+              class="password-input"
+              required
+            />
             <i class="bi bi-eye-slash" id="toggleOldPassword"></i>
           </div>
           <div id="new-password" class="input-box">
-            <input type="password" placeholder="Enter new password" class="password-input">
+            <input
+              type="password"
+              name="newPassword"
+              placeholder="Enter new password"
+              class="password-input"
+              required
+            />
             <i class="bi bi-eye-slash" id="toggleNewPassword"></i>
           </div>
           <div id="confirm-new-password" class="input-box">
-            <input type="password" placeholder="Confirm new password" class="password-input">
+            <input
+              type="password"
+              name="newConfirmPassword"
+              placeholder="Confirm new password"
+              class="password-input"
+              required
+            />
             <i class="bi bi-eye-slash" id="toggleConfirmPassword"></i>
           </div>
+
+          <button id="reset-password" type="submit">Reset Password</button>
         </form>
       </div>
     </div>
   </body>
   <script src="/js/profile.js"></script>
-  
 </html>

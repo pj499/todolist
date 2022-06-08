@@ -27,6 +27,11 @@ router.post("/resendOtp/", userController.resendOtp);
 router.get("/verifyOTP", userController.refreshOTP);
 router.post("/addTask", taskController.addTask);
 router.get("/deleteTask/:id", taskController.deleteTask);
-router.get("/profile", passport.checkAuthentication,taskController.profilePage);
+router.get(
+  "/profile",
+  passport.checkAuthentication,
+  taskController.profilePage
+);
+router.post("/update-password", userController.updatePassword);
 
 module.exports = router;

@@ -135,3 +135,16 @@ module.exports.refreshOTP = async function (req, res) {
   console.log("LOCAL STORAGE", store.getAll());
   return res.render("otp", { user: store("user") });
 };
+
+module.exports.updatePassword = async function (req, res) {
+  req.body.user = req.user;
+  // console.log("req of update password", req.body);
+  if (req.xhr) {
+    return res.status(200).json({
+      data: {
+        ...req.body,
+      },
+      message: "Password updated successfully!",
+    });
+  }
+};

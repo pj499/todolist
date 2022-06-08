@@ -53,7 +53,6 @@ let createTask = async function () {
             data: data,
             success: function (data) {
                 if (typeof data.data == "undefined") {
-                    console.log("inside success if");
 
                     new Noty({
                         theme: "metroui",
