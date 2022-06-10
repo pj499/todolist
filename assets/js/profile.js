@@ -1,5 +1,3 @@
-const bcrypt = require("bcrypt");
-
 var oldPassword = document.getElementById("toggleOldPassword");
 var oldPasswordInput = document.getElementsByClassName("password-input")[0];
 
@@ -53,48 +51,40 @@ var updatePasswordAJAX = function () {
       type: "post",
       url: "/user/update-password",
       data: updatePasswordForm.serialize(),
-      success: async function (data) {
-        console.log("Update password data", data);
-        var ajaxData = data.data;
-        const checkPassword = await bcrypt.compare(
-          ajaxData.user.password,
-          ajaxData.oldPassword
-        );
-        if (checkPassword) {
-          if (ajaxData.newPassword == ajaxData.newConfirmPassword) {
-            new Noty({
-              theme: "metroui",
-              text: "Passowrd Updated Successfully!",
-              type: "success",
-              layout: "topRight",
-              timeout: 2000,
-            }).show();
-            return;
-          } else {
-            new Noty({
-              theme: "metroui",
-              text: "Please confirm correct new password!",
-              type: "error",
-              layout: "topRight",
-              timeout: 5000,
-            }).show();
-            return;
-          }
+      success: function (data) {
+        new Noty({
+          theme: "metroui",
+          text: "Passowrd Updated Successfully!",
+          type: "success",
+          layout: "topRight",
+          timeout: 2000,
+        }).show();
+      },
+      error: function (error) {
+        if (
+          error.responseJSON.message == "Please confirm correct new password!"
+        ) {
+          new Noty({
+            theme: "metroui",
+            text: "Please confirm correct new password!",
+            type: "error",
+            layout: "topRight",
+            timeout: 2000,
+          }).show();
         } else {
           new Noty({
             theme: "metroui",
             text: "Please enter correct old password!",
             type: "error",
             layout: "topRight",
-            timeout: 5000,
+            timeout: 2000,
           }).show();
-          return;
         }
       },
-      error: function (error) {
-        console.log(error.responseText);
-      },
     });
+    e.currentTarget[0].value = "";
+    e.currentTarget[1].value = "";
+    e.currentTarget[2].value = "";
   });
 };
 

@@ -137,14 +137,33 @@ module.exports.refreshOTP = async function (req, res) {
 };
 
 module.exports.updatePassword = async function (req, res) {
-  req.body.user = req.user;
-  // console.log("req of update password", req.body);
-  if (req.xhr) {
-    return res.status(200).json({
-      data: {
-        ...req.body,
-      },
-      message: "Password updated successfully!",
-    });
+  const checkPassword = await bcrypt.compare(
+    req.body.oldPassword,
+    req.user.password
+  );
+
+  if (checkPassword) {
+    if (req.body.newPassword == req.body.newConfirmPassword) {
+      const newHashedPassword = await bcrypt.hash(req.body.newPassword, 10);
+      const user = await User.findByIdAndUpdate(req.user._id, { password: newHashedPassword });
+      if (req.xhr) {
+        return res.status(200).json({
+          message: "Password updated successfully!",
+        });
+      }
+    } else {
+      if (req.xhr) {
+        return res.status(400).json({
+          message: "Please confirm correct new password!",
+        });
+      }
+    }
+  } else {
+    // req.flash("error", "Please enter correct old password!");
+    if (req.xhr) {
+      return res.status(400).json({
+        message: "Please enter correct old password!",
+      });
+    }
   }
 };
