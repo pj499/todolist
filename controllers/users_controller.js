@@ -5,8 +5,7 @@ const bcrypt = require("bcrypt");
 const otpMailer = require("../mailers/otp_mailer");
 const url = require("url"); // built-in utility
 const store = require("store2");
-
-// let globalUser='';
+const sessionstorage = require("sessionstorage");
 
 module.exports.create = async function (req, res) {
   try {
@@ -39,11 +38,20 @@ module.exports.create = async function (req, res) {
 };
 
 module.exports.createSession = function (req, res) {
-  req.flash("success", "Logged in successfully");
+  
+  let data = sessionstorage.getItem("justLoggedIn");
+  console.log('create session', data)
+  if (!data) {
+    sessionstorage.setItem("justLoggedIn", "yes");
+    req.flash("success", "Logged in successfully");
+  }
+
   return res.redirect("/user/task");
 };
 
 module.exports.destroySession = function (req, res) {
+  sessionstorage.removeItem("justLoggedIn");
+  sessionstorage.clear();
   req.flash("success", "Signed Out Successfully!");
   req.logout();
   return res.redirect("/");
@@ -145,7 +153,9 @@ module.exports.updatePassword = async function (req, res) {
   if (checkPassword) {
     if (req.body.newPassword == req.body.newConfirmPassword) {
       const newHashedPassword = await bcrypt.hash(req.body.newPassword, 10);
-      const user = await User.findByIdAndUpdate(req.user._id, { password: newHashedPassword });
+      const user = await User.findByIdAndUpdate(req.user._id, {
+        password: newHashedPassword,
+      });
       if (req.xhr) {
         return res.status(200).json({
           message: "Password updated successfully!",
