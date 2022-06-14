@@ -15,7 +15,10 @@ passport.use(
         //find user and establish identity
         const user = await User.findOne({ email: email });
 
-        const checkPassword = await bcrypt.compare(password, user.password);
+        if(user){
+          var checkPassword = await bcrypt.compare(password, user.password);
+        }
+        
 
         //if user not found or given password is not equal to user password
         if (!user || !checkPassword) {

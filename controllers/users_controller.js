@@ -6,6 +6,8 @@ const otpMailer = require("../mailers/otp_mailer");
 const url = require("url"); // built-in utility
 const store = require("store2");
 const sessionstorage = require("sessionstorage");
+const fs = require("fs");
+const path = require("path");
 
 module.exports.create = async function (req, res) {
   try {
@@ -39,7 +41,7 @@ module.exports.create = async function (req, res) {
 
 module.exports.createSession = function (req, res) {
   let data = sessionstorage.getItem("justLoggedIn");
-  console.log('create session', data)
+  console.log("create session", data);
   if (!data) {
     sessionstorage.setItem("justLoggedIn", "yes");
     req.flash("success", "Logged in successfully");
@@ -63,7 +65,8 @@ module.exports.tasks = async function (req, res) {
     const user = await User.findById(req.user._id);
     const tasks = await Task.find({ user: req.user._id }).sort({ due_date: 1 });
     // console.log("Taskssssss", tasks);
-    store('user',user);
+    store("user", user);
+
     return res.render("task", {
       tasks: tasks,
     });
@@ -177,26 +180,32 @@ module.exports.updatePassword = async function (req, res) {
   }
 };
 
-module.exports.uploadProfile = async function(req,res){
-  try{
-  console.log('inside upload profike');
-  console.log("local storage user: ",store('user'));
-  let userr=store('user');
-  let user = await User.findById(userr._id);
-  console.log('user in upload profile: ',user);
-  User.uploadAvatar(req,res,function(e){
-    if(e){
-      console.log('Multer errror: ',e);
-    }
-    console.log(req.file);
-    if(req.file){
-      user.avatar=User.avatarPath+'/'+req.file.filename;
-    }
-    user.save();
-    return res.redirect('back');
-  })
-  }catch(e){
-    console.log('error in upload profile',e);
-    return res.redirect('back');
+module.exports.uploadProfile = async function (req, res) {
+  try {
+    console.log("inside upload profike");
+    // console.log("local storage user: ", store("user"));
+    let userr = store("user");
+    console.log("user in updateprofile", userr);
+    let user = await User.findById(userr._id);
+    // console.log('user in upload profile: ',user);
+
+    User.uploadAvatar(req, res, function (e) {
+      if (e) {
+        console.log("Multer errror: ", e);
+      }
+      console.log(req.file);
+      if (req.file) {
+        if (user.avatar) {
+          fs.unlinkSync(path.join(__dirname, "..", user.avatar));
+        }
+        user.avatar = User.avatarPath + "/" + req.file.filename;
+      }
+      user.save();
+
+      return res.redirect("back");
+    });
+  } catch (e) {
+    console.log("error in upload profile", e);
+    return res.redirect("back");
   }
 };

@@ -90,6 +90,8 @@ var updatePasswordAJAX = function () {
 
 updatePasswordAJAX();
 
-document.getElementById("avatar").onchange = function() {
+document.getElementById("avatar").onchange = function () {
   document.getElementById("upload-profile").submit();
 };
+
+var avatarImage= document
