@@ -128,6 +128,6 @@ module.exports.deleteTask = async function (req, res) {
 };
 
 module.exports.profilePage = function (req, res) {
-  console.log("inside profile");
-  return res.render("user_profile");
+  // console.log("inside profile");
+  return res.render("user_profile",{user:req.user});
 };

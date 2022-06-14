@@ -33,5 +33,6 @@ router.get(
   taskController.profilePage
 );
 router.post("/update-password", userController.updatePassword);
+router.post("/update-profile-picture",userController.uploadProfile);
 
 module.exports = router;

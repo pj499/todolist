@@ -36,12 +36,15 @@
     <%- include('_navbar'); -%>
     <div id="outer-div">
       <div id="profile-picture-outer">
-        <div id="profile-picture"></div>
+        <div id="profile-picture">
+          <img src="<%=user.avatar%>" alt="<%=user.name%>" height="100%" width="100%">
+        </div>
         <div id="change-profile">
           <form
             action="/user/update-profile-picture"
             enctype="multipart/form-data"
             method="post"
+            id="upload-profile"
           >
             <label for="avatar">Change profile photo</label>
             <input

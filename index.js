@@ -60,7 +60,7 @@ app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 app.use(flash());
 app.use(customMware.setFlash);
-
+app.use('/uploads',express.static(__dirname+'/uploads'));
 //routes
 app.use("/", require("./routes/index"));
 

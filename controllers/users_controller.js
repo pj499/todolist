@@ -38,7 +38,6 @@ module.exports.create = async function (req, res) {
 };
 
 module.exports.createSession = function (req, res) {
-  
   let data = sessionstorage.getItem("justLoggedIn");
   console.log('create session', data)
   if (!data) {
@@ -64,7 +63,7 @@ module.exports.tasks = async function (req, res) {
     const user = await User.findById(req.user._id);
     const tasks = await Task.find({ user: req.user._id }).sort({ due_date: 1 });
     // console.log("Taskssssss", tasks);
-
+    store('user',user);
     return res.render("task", {
       tasks: tasks,
     });
@@ -175,5 +174,29 @@ module.exports.updatePassword = async function (req, res) {
         message: "Please enter correct old password!",
       });
     }
+  }
+};
+
+module.exports.uploadProfile = async function(req,res){
+  try{
+  console.log('inside upload profike');
+  console.log("local storage user: ",store('user'));
+  let userr=store('user');
+  let user = await User.findById(userr._id);
+  console.log('user in upload profile: ',user);
+  User.uploadAvatar(req,res,function(e){
+    if(e){
+      console.log('Multer errror: ',e);
+    }
+    console.log(req.file);
+    if(req.file){
+      user.avatar=User.avatarPath+'/'+req.file.filename;
+    }
+    user.save();
+    return res.redirect('back');
+  })
+  }catch(e){
+    console.log('error in upload profile',e);
+    return res.redirect('back');
   }
 };
