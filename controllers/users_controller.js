@@ -42,6 +42,7 @@ module.exports.create = async function (req, res) {
 module.exports.createSession = function (req, res) {
   let data = sessionstorage.getItem("justLoggedIn");
   console.log("create session", data);
+  console.log('inside create session');
   if (!data) {
     sessionstorage.setItem("justLoggedIn", "yes");
     req.flash("success", "Logged in successfully");
@@ -61,7 +62,7 @@ module.exports.destroySession = function (req, res) {
 module.exports.tasks = async function (req, res) {
   try {
     // console.log("Request: ", req.user);
-
+    console.log('inside tasks')
     const user = await User.findById(req.user._id);
     const tasks = await Task.find({ user: req.user._id }).sort({ due_date: 1 });
     // console.log("Taskssssss", tasks);

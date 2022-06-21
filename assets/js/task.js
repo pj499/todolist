@@ -65,6 +65,12 @@ let createTask = async function () {
                     return;
                 }
 
+                
+
+                let newTask = newTaskDom(data.data.task);
+                $("#tasks-list>ul").prepend(newTask);
+                deleteTask($(' .delete-task',newTask));
+                // window.location.reload();
                 new Noty({
                     theme: "metroui",
                     text: "Task Created Successfully!",
@@ -72,10 +78,6 @@ let createTask = async function () {
                     layout: "topRight",
                     timeout: 2000,
                 }).show();
-
-                let newTask = newTaskDom(data.data.task);
-                $("#tasks-list>ul").prepend(newTask);
-                deleteTask($(' .delete-task',newTask));
                 e.currentTarget[0].value = '';
                 e.currentTarget[1].value = '';
                 e.currentTarget[2].value = '';
