@@ -186,7 +186,7 @@ module.exports.uploadProfile = async function (req, res) {
     console.log("inside upload profike");
     // console.log("local storage user: ", store("user"));
     let userr = store("user");
-    console.log("user in updateprofile", userr);
+    // console.log("user in updateprofile", userr);
     let user = await User.findById(userr._id);
     // console.log('user in upload profile: ',user);
 
@@ -194,7 +194,7 @@ module.exports.uploadProfile = async function (req, res) {
       if (e) {
         console.log("Multer errror: ", e);
       }
-      console.log(req.file);
+      // console.log(req.file);
       if (req.file) {
         if (user.avatar) {
           fs.unlinkSync(path.join(__dirname, "..", user.avatar));
@@ -203,7 +203,7 @@ module.exports.uploadProfile = async function (req, res) {
       }
       user.save();
 
-      console.log('req in uploadAvatar', req);
+      // console.log('req in uploadAvatar', req);
 
       if(req.xhr){
         console.log('req xhr');
@@ -214,7 +214,7 @@ module.exports.uploadProfile = async function (req, res) {
           message: 'Avatar updated successfully!'
         });
       }
-      // return res.redirect("back");
+      return res.redirect("back");
     });
   } catch (e) {
     console.log("error in upload profile", e);
