@@ -90,6 +90,10 @@ var updatePasswordAJAX = function () {
 
 updatePasswordAJAX();
 
+function updateProf(){
+  console.log('updaTe profile')
+  updateProfile();
+}
 var updateProfile = function () {
   // var formData = new FormData(this);
   var updateProfileForm = $("#upload-profile");
@@ -118,7 +122,7 @@ var updateProfile = function () {
   });
 };
 
- updateProfile();
+
 
 // document.getElementById("avatar").onchange = function () {
 //   document.getElementById("upload-profile").submit();
