@@ -90,47 +90,40 @@ var updatePasswordAJAX = function () {
 
 updatePasswordAJAX();
 
-function updateProf(){
-  console.log('updaTe profile')
-  updateProfile();
-}
-var updateProfile = function () {
-  // var formData = new FormData(this);
-  var updateProfileForm = $("#upload-profile");
-  var avatar = document.getElementById("avatar-image");
-  console.log('avatar', avatar)
+
+// var updateProfile = function () {
+//   console.log("Inside updateProfile Function");
+//   // var formData = new FormData(this);
+//   var updateProfileForm = $("#upload-profile");
+//   var avatar = document.getElementById("avatar-image");
+  // console.log('avatar', avatar)
   // formData.append("updateProfileForm", updateProfileForm);
 
-  updateProfileForm.submit(function (e) {
-    e.preventDefault();
-
-    $.ajax({
-      url: "/user/update-profile-picture",
-      method: "post",
-      data: new FormData(this),
-      processData: false,
-      contentType: false,
-      success: function (data) {
-        console.log("ajax upload profile data", data.data);
-        avatar.setAttribute("src", data.data.avatar);
-        return;
-      },
-      error: function (err) {
-        console.log(err.responseText);
-      },
-    });
-  });
-};
-
-
-
-// document.getElementById("avatar").onchange = function () {
-//   document.getElementById("upload-profile").submit();
+//   updateProfileForm.submit(function (e) {
+//     e.preventDefault();
+//     console.log("Inside Submit");
+//     $.ajax({
+//       url: "/user/update-profile-picture",
+//       method: "post",
+//       data: new FormData(this),
+//       processData: false,
+//       contentType: false,
+//       success: function (data) {
+//         console.log("ajax upload profile data", data.data);
+//         avatar.setAttribute("src", data.data.avatar);
+//         return;
+//       },
+//       error: function (err) {
+//         console.log(err.responseText);
+//       },
+//     });
+//   });
 // };
 
-// $(document).ready(function() { 
-//   // bind 'myForm' and provide a simple callback function 
-//   $('#upload-profile').ajaxForm(function() { 
-//       alert("Thank you!"); 
-//   }); 
-// });
+// updateProfile();
+
+document.getElementById("avatar").onchange = function () {
+  document.getElementById("upload-profile").submit();
+};
+
+  

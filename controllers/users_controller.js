@@ -42,6 +42,7 @@ module.exports.create = async function (req, res) {
 module.exports.createSession = function (req, res) {
   let data = sessionstorage.getItem("justLoggedIn");
   console.log("create session", data);
+  console.log('inside create session');
   if (!data) {
     sessionstorage.setItem("justLoggedIn", "yes");
     req.flash("success", "Logged in successfully");
@@ -61,7 +62,7 @@ module.exports.destroySession = function (req, res) {
 module.exports.tasks = async function (req, res) {
   try {
     // console.log("Request: ", req.user);
-
+    console.log('inside tasks')
     const user = await User.findById(req.user._id);
     const tasks = await Task.find({ user: req.user._id }).sort({ due_date: 1 });
     // console.log("Taskssssss", tasks);
@@ -185,7 +186,7 @@ module.exports.uploadProfile = async function (req, res) {
     console.log("inside upload profike");
     // console.log("local storage user: ", store("user"));
     let userr = store("user");
-    console.log("user in updateprofile", userr);
+    // console.log("user in updateprofile", userr);
     let user = await User.findById(userr._id);
     // console.log('user in upload profile: ',user);
 
@@ -193,7 +194,7 @@ module.exports.uploadProfile = async function (req, res) {
       if (e) {
         console.log("Multer errror: ", e);
       }
-      console.log(req.file);
+      // console.log(req.file);
       if (req.file) {
         if (user.avatar) {
           fs.unlinkSync(path.join(__dirname, "..", user.avatar));
@@ -202,18 +203,18 @@ module.exports.uploadProfile = async function (req, res) {
       }
       user.save();
 
-      console.log('req in uploadAvatar', req);
+      // console.log('req in uploadAvatar', req);
 
-      if(req.xhr){
-        console.log('req xhr');
-        return res.status(200).json({
-          data: {
-            avatar: user.avatar
-          },
-          message: 'Avatar updated successfully!'
-        });
-      }
-      // return res.redirect("back");
+      // if(req.xhr){
+      //   console.log('req xhr');
+      //   return res.status(200).json({
+      //     data: {
+      //       avatar: user.avatar
+      //     },
+      //     message: 'Avatar updated successfully!'
+      //   });
+      // }
+      return res.redirect("back");
     });
   } catch (e) {
     console.log("error in upload profile", e);
