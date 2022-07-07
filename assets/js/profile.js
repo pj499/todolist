@@ -122,25 +122,7 @@ var updateProfile = function () {
 
 
 document.getElementById("avatar").onchange = function () {
-  document.getElementById("upload-profile").submit(function (e) {
-    e.preventDefault();
-    console.log("Inside Submit");
-    $.ajax({
-      url: "/user/update-profile-picture",
-      method: "post",
-      data: new FormData(this),
-      processData: false,
-      contentType: false,
-      success: function (data) {
-        console.log("ajax upload profile data", data.data);
-        avatar.setAttribute("src", data.data.avatar);
-        return;
-      },
-      error: function (err) {
-        console.log(err.responseText);
-      },
-    });
-  });
+  document.getElementById("upload-profile").submit();
 };
 // $('#avatar').change(function(){
 //   console.log("Inside change jquery");
