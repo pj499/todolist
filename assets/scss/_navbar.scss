@@ -13,9 +13,13 @@
   #profile-picture {
     width: 30px;
     height: 30px;
-    border: 1px solid black;
     border-radius: 50px;
     position: relative;
+    img{
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+    }
   }
   #profile-picture:hover {
     cursor: pointer;

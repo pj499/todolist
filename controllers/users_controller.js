@@ -205,15 +205,15 @@ module.exports.uploadProfile = async function (req, res) {
 
       // console.log('req in uploadAvatar', req);
 
-      if(req.xhr){
-        console.log('req xhr');
-        return res.status(200).json({
-          data: {
-            avatar: user.avatar
-          },
-          message: 'Avatar updated successfully!'
-        });
-      }
+      // if(req.xhr){
+      //   console.log('req xhr');
+      //   return res.status(200).json({
+      //     data: {
+      //       avatar: user.avatar
+      //     },
+      //     message: 'Avatar updated successfully!'
+      //   });
+      // }
       return res.redirect("back");
     });
   } catch (e) {

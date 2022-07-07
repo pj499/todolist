@@ -15,3 +15,10 @@ profilePicture.addEventListener("click", function () {
   }
 });
 
+console.log(window.location.href);
+
+if(window.location.href.includes('/user/profile')){
+  var home= document.getElementById('home-or-profile');
+  home.innerText= 'Home';
+  home.setAttribute('href', '/user/task');
+}

@@ -1,14 +1,23 @@
 <div id="navbar">
+  
   <div id="profile-picture">
+    <% if( user.avatar ){ %>
+      <img src="<%=user.avatar%>" alt="<%=user.name%>" height="100%" width="100%" id="avatar-image">
+    <% } else{ %>
+      <img src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png" alt="<%=user.name%>" height="100%" width="100%" id="avatar-image">
+    <% } %>
+
+
     <div id="profile-box">
       <div id="profile" class="profile-box-items">
-        <a href="/user/profile">Profile</a>
+        <a href="/user/profile" id="home-or-profile">Profile</a>
       </div>
       <div style="width: 70%; margin: 0 auto; border-top: 1px solid gray"></div>
       <div id="sign-out" class="profile-box-items">
         <a href="/user/sign-out"> Sign Out </a>
       </div>
     </div>
+
   </div>
 </div>
 
